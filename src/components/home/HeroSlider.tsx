@@ -57,7 +57,7 @@ const HeroSlider = () => {
         speed={1500}
         autoplay={{ delay: 6000, disableOnInteraction: false }}
         pagination={{ clickable: true }}
-        navigation={true}
+        navigation={false}
         loop={true}
         className="h-full w-full min-h-[100vh] lg:min-h-0"
       >
