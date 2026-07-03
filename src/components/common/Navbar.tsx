@@ -24,6 +24,7 @@ const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [activeMegaMenu, setActiveMegaMenu] = useState<string | null>(null);
+  const [expandedMobileMenu, setExpandedMobileMenu] = useState<string | null>(null);
   const location = useLocation();
 
   useEffect(() => {
@@ -203,16 +204,61 @@ const Navbar = () => {
             
             <div className="flex flex-col gap-8">
               {navLinks.map((link) => (
-                <Link 
-                  key={link.name} 
-                  to={link.path} 
-                  className={cn(
-                    "text-3xl font-serif font-bold transition-colors",
-                    location.pathname === link.path ? "text-medical-gold" : "text-white"
-                  )}
-                >
-                  {link.name}
-                </Link>
+                <div key={link.name} className="flex flex-col gap-4">
+                  <div className="flex items-center justify-between">
+                    <Link 
+                      to={link.path} 
+                      className={cn(
+                        "text-3xl font-serif font-bold transition-colors",
+                        location.pathname === link.path ? "text-medical-gold" : "text-white"
+                      )}
+                      onClick={() => !link.megaMenu && setIsMobileMenuOpen(false)}
+                    >
+                      {link.name}
+                    </Link>
+                    {link.megaMenu && (
+                      <button 
+                        onClick={() => setExpandedMobileMenu(expandedMobileMenu === link.name ? null : link.name)}
+                        className="p-2 text-white/70 hover:text-white"
+                      >
+                        <ChevronDown 
+                          size={28} 
+                          className={cn("transition-transform duration-300", expandedMobileMenu === link.name ? "rotate-180 text-medical-gold" : "")} 
+                        />
+                      </button>
+                    )}
+                  </div>
+                  
+                  <AnimatePresence>
+                    {link.megaMenu && expandedMobileMenu === link.name && (
+                      <motion.div 
+                        initial={{ opacity: 0, height: 0 }}
+                        animate={{ opacity: 1, height: 'auto' }}
+                        exit={{ opacity: 0, height: 0 }}
+                        className="flex flex-col gap-6 pl-4 border-l-2 border-white/10 overflow-hidden"
+                      >
+                        {link.megaMenu.map((section) => (
+                          <div key={section.title} className="flex flex-col gap-3 py-2">
+                            <span className="text-medical-gold text-sm font-bold uppercase tracking-wider">{section.title}</span>
+                            <div className="flex flex-col gap-3">
+                              {section.items.map((item) => (
+                                <Link 
+                                  key={item}
+                                  to={section.path || `${link.path}#${item.toLowerCase().replace(/\s+/g, '-')}`}
+                                  onClick={() => setIsMobileMenuOpen(false)}
+                                  className="text-lg text-white/80 hover:text-white transition-colors flex items-center gap-2"
+                                >
+                                  <div className="w-1.5 h-1.5 rounded-full bg-medical-gold/50" />
+                                  {item}
+                                </Link>
+                              ))}
+                            </div>
+                          </div>
+                        ))}
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </div>
               ))}
               <div className="mt-8 space-y-4 pb-8">
                 <Link 
