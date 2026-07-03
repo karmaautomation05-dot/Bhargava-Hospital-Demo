@@ -49,7 +49,7 @@ const About = () => {
                 initial={{ y: 20, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
                 transition={{ delay: 0.1 }}
-                className="text-5xl md:text-7xl font-serif font-bold text-white mb-8 leading-tight tracking-tight"
+                className="text-4xl sm:text-5xl md:text-7xl font-serif font-bold text-white mb-8 leading-tight tracking-tight"
               >
                 Welcome to <br /> <span className="text-medical-gold drop-shadow-[0_2px_2px_rgba(0,0,0,1)]">Bhargava Medical & Trauma Centre</span>
               </motion.h1>

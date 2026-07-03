@@ -133,19 +133,19 @@ const Services = () => {
             animate={{ y: 0, opacity: 1 }}
           >
             <span className="text-medical-gold uppercase tracking-[0.3em] font-bold text-sm mb-4 block">Medical Excellence</span>
-            <h1 className="text-5xl md:text-7xl font-serif font-bold text-white mb-8">
+            <h1 className="text-4xl sm:text-5xl md:text-7xl font-serif font-bold text-white mb-8">
               Our Healthcare <span className="text-medical-gold">Services</span>
             </h1>
-            <div className="flex justify-center gap-4 mt-12">
+            <div className="flex flex-wrap justify-center gap-2 sm:gap-4 mt-12">
               <button
                 onClick={() => setActiveTab('opd')}
-                className={`px-8 py-4 rounded-full font-bold transition-all ${activeTab === 'opd' ? 'bg-medical-gold text-medical-navy shadow-luxury' : 'bg-white/10 text-white hover:bg-white/20'}`}
+                className={`px-6 py-3 sm:px-8 sm:py-4 text-sm sm:text-base rounded-full font-bold transition-all ${activeTab === 'opd' ? 'bg-medical-gold text-medical-navy shadow-luxury' : 'bg-white/10 text-white hover:bg-white/20'}`}
               >
                 OPD Services
               </button>
               <button
                 onClick={() => setActiveTab('ipd')}
-                className={`px-8 py-4 rounded-full font-bold transition-all ${activeTab === 'ipd' ? 'bg-medical-gold text-medical-navy shadow-luxury' : 'bg-white/10 text-white hover:bg-white/20'}`}
+                className={`px-6 py-3 sm:px-8 sm:py-4 text-sm sm:text-base rounded-full font-bold transition-all ${activeTab === 'ipd' ? 'bg-medical-gold text-medical-navy shadow-luxury' : 'bg-white/10 text-white hover:bg-white/20'}`}
               >
                 IPD Services
               </button>

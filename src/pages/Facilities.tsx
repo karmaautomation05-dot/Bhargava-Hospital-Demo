@@ -83,7 +83,7 @@ const Facilities = () => {
                 initial={{ y: 20, opacity: 0 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.1 }}
-                className="text-5xl md:text-7xl font-serif font-bold text-white mb-8 leading-tight tracking-tight"
+                className="text-4xl sm:text-5xl md:text-7xl font-serif font-bold text-white mb-8 leading-tight tracking-tight"
               >
                 Advanced Facilities for <br /> <span className="text-medical-gold">Better Outcomes</span>
               </motion.h1>

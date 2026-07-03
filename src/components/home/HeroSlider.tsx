@@ -107,7 +107,7 @@ const HeroSlider = () => {
                         initial={{ opacity: 0, y: 30 }}
                         animate={isActive ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
                         transition={{ duration: isActive ? 0.8 : 0.4, delay: isActive ? 0.4 : 0 }}
-                        className="text-4xl md:text-6xl lg:text-7xl font-serif font-bold mb-6 leading-tight tracking-tight text-white"
+                        className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-serif font-bold mb-6 leading-tight tracking-tight text-white"
                       >
                         <span>
                           {slide.title.split(' ').slice(0, -1).join(' ')}

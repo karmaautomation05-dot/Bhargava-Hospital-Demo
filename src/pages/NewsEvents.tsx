@@ -68,7 +68,7 @@ const NewsEvents = () => {
             animate={{ y: 0, opacity: 1 }}
           >
             <span className="text-medical-gold uppercase tracking-[0.3em] font-bold text-sm mb-4 block">Media</span>
-            <h1 className="text-5xl md:text-7xl font-serif font-bold text-white mb-6">
+            <h1 className="text-4xl sm:text-5xl md:text-7xl font-serif font-bold text-white mb-6">
               News & <span className="text-medical-gold">Events</span>
             </h1>
             <p className="text-white/80 max-w-2xl mx-auto text-lg mb-10">

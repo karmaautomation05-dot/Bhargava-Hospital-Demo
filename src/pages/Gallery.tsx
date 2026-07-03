@@ -69,7 +69,7 @@ const Gallery = () => {
             animate={{ y: 0, opacity: 1 }}
           >
             <span className="text-medical-gold uppercase tracking-[0.3em] font-bold text-sm mb-4 block">Visual Tour</span>
-            <h1 className="text-5xl md:text-7xl font-serif font-bold text-white mb-6">
+            <h1 className="text-4xl sm:text-5xl md:text-7xl font-serif font-bold text-white mb-6">
               Hospital <span className="text-medical-gold">Gallery</span>
             </h1>
             <p className="text-white/80 max-w-2xl mx-auto text-lg mb-10">
@@ -102,14 +102,12 @@ const Gallery = () => {
       <section className="py-12 relative z-20 min-h-[500px]">
         <div className="section-container">
           <motion.div 
-            layout
             className="columns-1 sm:columns-2 lg:columns-3 xl:columns-4 gap-6 space-y-6"
           >
             <AnimatePresence>
               {displayedImages.map((item) => (
                 <motion.div
                   key={item.id}
-                  layout
                   initial={{ opacity: 0, scale: 0.9 }}
                   animate={{ opacity: 1, scale: 1 }}
                   exit={{ opacity: 0, scale: 0.9 }}
