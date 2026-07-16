@@ -4,6 +4,7 @@ import StatsSection from '../components/home/StatsSection';
 import ServicesGrid from '../components/home/ServicesGrid';
 import Testimonials from '../components/home/Testimonials';
 import BlogsSection from '../components/home/BlogsSection';
+import GoogleReviews from '../components/home/GoogleReviews';
 import { motion } from 'framer-motion';
 import { Clock, Award, ArrowRight, Stethoscope, Heart, Calendar, Phone, Activity, GraduationCap } from 'lucide-react';
 import { Link } from 'react-router-dom';
@@ -287,10 +288,10 @@ const Home = () => {
         {/* Blogs Section */}
         <BlogsSection />
 
-        {/* Testimonials */}
-        <section className="bg-[#F1F5F9]">
-          <Testimonials />
-        </section>
+        {/* Google Reviews */}
+        <GoogleReviews />
+
+
       </div>
     </motion.div>
   );
