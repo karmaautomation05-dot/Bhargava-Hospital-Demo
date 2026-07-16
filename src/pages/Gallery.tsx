@@ -61,16 +61,16 @@ const Gallery = () => {
       </Helmet>
 
       {/* Hero Section */}
-      <section className="py-24 relative overflow-hidden bg-gradient-to-r from-[#071B34] via-cyan-600 to-cyan-400">
+      <section className="py-24 relative overflow-hidden bg-gradient-to-br from-[#071B34] via-cyan-800 to-cyan-900">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(212,169,95,0.08),transparent_40%)]" />
         <div className="section-container relative z-10 text-center">
           <motion.div
             initial={{ y: 20, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
           >
-            <span className="text-medical-gold uppercase tracking-[0.3em] font-bold text-sm mb-4 block">Visual Tour</span>
+            <span className="text-white uppercase tracking-[0.3em] font-bold text-sm mb-4 block">Visual Tour</span>
             <h1 className="text-4xl sm:text-5xl md:text-7xl font-serif font-bold text-white mb-6">
-              Hospital <span className="text-medical-gold">Gallery</span>
+              Hospital <span className="text-white">Gallery</span>
             </h1>
             <p className="text-white/80 max-w-2xl mx-auto text-lg mb-10">
               A comprehensive visual tour of our state-of-the-art facilities, patient wards, intensive care units, and community health events.
@@ -162,7 +162,7 @@ const Gallery = () => {
               onClick={(e) => e.stopPropagation()}
             />
             <button 
-              className="absolute top-6 right-6 text-white hover:text-medical-gold transition-colors bg-white/10 hover:bg-white/20 p-2 rounded-full"
+              className="absolute top-6 right-6 text-white hover:text-white transition-colors bg-white/10 hover:bg-white/20 p-2 rounded-full"
               onClick={() => setSelectedImage(null)}
             >
               <X size={32} />

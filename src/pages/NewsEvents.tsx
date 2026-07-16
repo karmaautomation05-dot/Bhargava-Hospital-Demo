@@ -11,7 +11,7 @@ import newsImage3 from '../assets/news/news_3.jpg';
 const MEDIA_ITEMS = [
   {
     type: 'event',
-    title: 'BMTC Annual Healthcare Camp',
+    title: 'Bhargava Medical and Trauma Centre Annual Healthcare Camp',
     date: 'October 15, 2020',
     description: 'Our team of specialists successfully organized a large-scale community health camp, providing free consultations and basic diagnostics to hundreds of local residents in need.',
     image: newsImage1,
@@ -21,13 +21,13 @@ const MEDIA_ITEMS = [
     type: 'news',
     title: 'Community Outreach & Engagement Program',
     date: 'October 20, 2020',
-    description: 'Continuing our commitment to public health, the BMTC staff conducted interactive outreach programs to educate the community on preventive healthcare and emergency response.',
+    description: 'Continuing our commitment to public health, the Bhargava Medical and Trauma Centre staff conducted interactive outreach programs to educate the community on preventive healthcare and emergency response.',
     image: newsImage2,
     icon: Newspaper
   },
   {
     type: 'news',
-    title: 'Specialized Care Initiatives at BMTC',
+    title: 'Specialized Care Initiatives at Bhargava Medical and Trauma Centre',
     date: 'October 25, 2020',
     description: 'A glimpse into our dedication to patient care. We continually strive to expand our facilities and medical expertise to serve the people of Kanpur with the highest standards of healthcare.',
     image: newsImage3,
@@ -60,16 +60,16 @@ const NewsEvents = () => {
       </Helmet>
 
       {/* Hero Section */}
-      <section className="py-24 relative overflow-hidden bg-gradient-to-r from-[#071B34] via-cyan-600 to-cyan-400">
+      <section className="py-24 relative overflow-hidden bg-gradient-to-br from-[#071B34] via-cyan-800 to-cyan-900">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(212,169,95,0.08),transparent_40%)]" />
         <div className="section-container relative z-10 text-center">
           <motion.div
             initial={{ y: 20, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
           >
-            <span className="text-medical-gold uppercase tracking-[0.3em] font-bold text-sm mb-4 block">Media</span>
+            <span className="text-white uppercase tracking-[0.3em] font-bold text-sm mb-4 block">Media</span>
             <h1 className="text-4xl sm:text-5xl md:text-7xl font-serif font-bold text-white mb-6">
-              News & <span className="text-medical-gold">Events</span>
+              News & <span className="text-white">Events</span>
             </h1>
             <p className="text-white/80 max-w-2xl mx-auto text-lg mb-10">
               Stay updated with the latest happenings, medical breakthroughs, health camps, and media releases from Bhargava Medical & Trauma Center.
@@ -103,14 +103,14 @@ const NewsEvents = () => {
                     className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
                   />
                   <div className="absolute top-4 left-4 z-20 bg-white/90 backdrop-blur-sm px-4 py-2 rounded-full flex items-center gap-2">
-                    <item.icon size={16} className="text-medical-gold" />
+                    <item.icon size={16} className="text-medical-royal" />
                     <span className="text-xs font-bold text-medical-navy uppercase tracking-wider">
                       {item.type}
                     </span>
                   </div>
                 </div>
                 <div className="p-8 flex flex-col flex-grow">
-                  <div className="flex items-center gap-2 text-medical-gold mb-4 text-sm font-medium">
+                  <div className="flex items-center gap-2 text-medical-royal mb-4 text-sm font-medium">
                     <Calendar size={16} />
                     {item.date}
                   </div>
@@ -122,7 +122,7 @@ const NewsEvents = () => {
                   </p>
                   <button 
                     onClick={() => toggleExpand(idx)}
-                    className="mt-auto text-left font-bold text-medical-royal hover:text-medical-gold transition-colors inline-flex items-center gap-2 w-max"
+                    className="mt-auto text-left font-bold text-medical-royal hover:text-medical-royal transition-colors inline-flex items-center gap-2 w-max"
                   >
                     {expandedItems.includes(idx) ? 'Read Less' : 'Read More'}
                     <ArrowRight size={16} className={`transition-transform duration-300 ${expandedItems.includes(idx) ? 'rotate-90' : ''}`} />
@@ -139,7 +139,7 @@ const NewsEvents = () => {
       <section className="py-24 bg-medical-warmWhite">
         <div className="section-container">
           <div className="bg-medical-navy rounded-[3rem] p-12 md:p-20 text-center relative overflow-hidden">
-            <div className="absolute top-0 right-0 w-64 h-64 bg-medical-gold/10 blur-[80px] rounded-full -mr-32 -mt-32" />
+            <div className="absolute top-0 right-0 w-64 h-64 bg-medical-royal/10 blur-[80px] rounded-full -mr-32 -mt-32" />
             <div className="absolute bottom-0 left-0 w-64 h-64 bg-cyan-500/10 blur-[80px] rounded-full -ml-32 -mb-32" />
             
             <div className="relative z-10 max-w-3xl mx-auto">
@@ -179,7 +179,7 @@ const NewsEvents = () => {
               onClick={(e) => e.stopPropagation()}
             />
             <button 
-              className="absolute top-6 right-6 text-white hover:text-medical-gold transition-colors bg-white/10 hover:bg-white/20 p-2 rounded-full"
+              className="absolute top-6 right-6 text-white hover:text-white transition-colors bg-white/10 hover:bg-white/20 p-2 rounded-full"
               onClick={() => setSelectedImage(null)}
             >
               <X size={32} />

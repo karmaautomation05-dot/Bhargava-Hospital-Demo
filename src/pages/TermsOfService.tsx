@@ -15,12 +15,12 @@ const TermsOfService = () => {
           
           <h2 className="text-2xl font-bold text-medical-navy mt-10 mb-4">1. Acceptance of Terms</h2>
           <p>
-            By accessing and using the Bhargava Medical & Trauma Center (BMTC) website, you accept and agree to be bound by the terms and provision of this agreement. If you do not agree to abide by these terms, please do not use our website or services.
+            By accessing and using the Bhargava Medical & Trauma Centre website, you accept and agree to be bound by the terms and provision of this agreement. If you do not agree to abide by these terms, please do not use our website or services.
           </p>
 
           <h2 className="text-2xl font-bold text-medical-navy mt-10 mb-4">2. Medical Disclaimer</h2>
           <p>
-            The content on the BMTC website is provided for general informational purposes only and is not intended as, nor should it be considered a substitute for, professional medical advice, diagnosis, or treatment. Always seek the advice of your physician or other qualified health provider with any questions you may have regarding a medical condition.
+            The content on the Bhargava Medical and Trauma Centre website is provided for general informational purposes only and is not intended as, nor should it be considered a substitute for, professional medical advice, diagnosis, or treatment. Always seek the advice of your physician or other qualified health provider with any questions you may have regarding a medical condition.
           </p>
 
           <h2 className="text-2xl font-bold text-medical-navy mt-10 mb-4">3. Appointment Requests</h2>
@@ -35,7 +35,7 @@ const TermsOfService = () => {
 
           <h2 className="text-2xl font-bold text-medical-navy mt-10 mb-4">5. Modifications to Terms</h2>
           <p>
-            BMTC reserves the right to modify these terms at any time. We do so by posting and drawing attention to the updated terms on this site. Your decision to continue to visit and make use of the site after such changes have been made constitutes your formal acceptance of the new Terms of Service.
+            Bhargava Medical and Trauma Centre reserves the right to modify these terms at any time. We do so by posting and drawing attention to the updated terms on this site. Your decision to continue to visit and make use of the site after such changes have been made constitutes your formal acceptance of the new Terms of Service.
           </p>
           
           <h2 className="text-2xl font-bold text-medical-navy mt-10 mb-4">6. Contact Information</h2>

@@ -7,7 +7,7 @@ const Loader = () => {
         <motion.div
           animate={{ rotate: 360 }}
           transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
-          className="w-16 h-16 border-4 border-medical-navy/20 border-t-medical-gold rounded-full"
+          className="w-16 h-16 border-4 border-medical-navy/20 border-t-medical-royal rounded-full"
         />
         <motion.div
           initial={{ opacity: 0 }}

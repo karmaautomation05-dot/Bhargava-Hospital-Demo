@@ -29,7 +29,7 @@ const BlogPost = () => {
   return (
     <>
       <Helmet>
-        <title>{blog.title} | BMTC Medical Blog</title>
+        <title>{blog.title} | Bhargava Medical and Trauma Centre Medical Blog</title>
         <meta name="description" content={blog.excerpt} />
       </Helmet>
 
@@ -51,7 +51,7 @@ const BlogPost = () => {
             transition={{ duration: 0.6 }}
             className="max-w-4xl"
           >
-            <div className="flex flex-wrap items-center gap-4 text-sm text-medical-gold font-semibold uppercase tracking-wider mb-6">
+            <div className="flex flex-wrap items-center gap-4 text-sm text-white font-semibold uppercase tracking-wider mb-6">
               <span className="bg-white/10 backdrop-blur-sm px-4 py-2 rounded-lg flex items-center gap-2">
                 <Tag size={16} />
                 {blog.category}
@@ -70,7 +70,7 @@ const BlogPost = () => {
                 {blog.author}
               </div>
               <div className="flex items-center gap-2">
-                <Calendar size={20} className="text-medical-gold" />
+                <Calendar size={20} className="text-white" />
                 {blog.date}
               </div>
             </div>

@@ -1,18 +1,32 @@
+import { useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Helmet } from 'react-helmet-async';
 import { 
   ShieldCheck, Award, Microscope, Zap, Star, Shield, 
   HandHeart, CheckCircle2 
 } from 'lucide-react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 
-// Import images
 import bmtc2 from '../assets/images/hospital/bmtc2.png';
 import bmtc4 from '../assets/images/hospital/bmtc4.png';
 import drPriyanka from '../assets/images/doctors/dr priyanka.jpg';
 import drGaurav from '../assets/images/doctors/Gaurav Bhargava.png';
 
 const About = () => {
+  const location = useLocation();
+
+  useEffect(() => {
+    const hash = location.hash.replace('#', '');
+    if (hash) {
+      const el = document.getElementById(decodeURIComponent(hash));
+      if (el) {
+        setTimeout(() => {
+          el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }, 300);
+      }
+    }
+  }, [location.hash]);
+
   return (
     <motion.div
       initial={{ opacity: 0 }}
@@ -25,7 +39,6 @@ const About = () => {
         <meta name="description" content="Learn about our founders, Dr. Gaurav Bhargava and Dr. Priyanka Bhargava, and our legacy of delivering clinical excellence in Kanpur since 2012." />
       </Helmet>
 
-      {/* Background Decorative Shadows */}
       <div className="fixed inset-0 pointer-events-none z-0">
         <div className="absolute top-0 -left-1/4 w-1/2 h-1/2 bg-medical-navy/5 blur-[120px] rounded-full" />
         <div className="absolute bottom-0 -right-1/4 w-1/2 h-1/2 bg-medical-royal/5 blur-[120px] rounded-full" />
@@ -33,7 +46,7 @@ const About = () => {
 
       <div className="relative z-10">
         {/* Cinematic Story Hero */}
-        <section className="relative py-32 overflow-hidden bg-gradient-to-r from-[#071B34] via-cyan-600 to-cyan-400">
+        <section className="relative py-32 overflow-hidden bg-gradient-to-br from-[#071B34] via-cyan-800 to-cyan-900">
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(212,169,95,0.08),transparent_40%)]" />
           <div className="section-container relative z-10">
             <div className="max-w-none">
@@ -42,8 +55,8 @@ const About = () => {
                 animate={{ opacity: 1, x: 0 }}
                 className="flex items-center gap-4 mb-8"
               >
-                <div className="w-12 h-[2px] bg-medical-gold" />
-                <span className="text-medical-gold uppercase tracking-[0.3em] font-bold text-sm">Established June 14, 2012</span>
+                <div className="w-12 h-[2px] bg-medical-royal" />
+                <span className="text-white uppercase tracking-[0.3em] font-bold text-sm">Established June 14, 2012</span>
               </motion.div>
               <motion.h1 
                 initial={{ y: 20, opacity: 0 }}
@@ -51,7 +64,7 @@ const About = () => {
                 transition={{ delay: 0.1 }}
                 className="text-4xl sm:text-5xl md:text-7xl font-serif font-bold text-white mb-8 leading-tight tracking-tight"
               >
-                Welcome to <br /> <span className="text-medical-gold drop-shadow-[0_2px_2px_rgba(0,0,0,1)]">Bhargava Medical & Trauma Centre</span>
+                Welcome to <br /> <span className="text-white drop-shadow-[0_2px_2px_rgba(0,0,0,1)]">Bhargava Medical & Trauma Centre</span>
               </motion.h1>
               <p className="text-white/70 text-xl max-w-2xl font-medium leading-relaxed mb-12">
                 A legacy built on trust, managed by Dr. Gaurav Bhargava, Dr. Priyanka Bhargava, and Dr. R.R. Bhargava, dedicated to delivering Delhi-standard healthcare to Kanpur.
@@ -86,7 +99,7 @@ const About = () => {
                 {/* Founders Floating Card */}
                 <div className="absolute -bottom-10 -right-10 bg-white p-10 rounded-[2.5rem] shadow-luxury border border-medical-border z-20 hidden md:block max-w-xs">
                   <div className="flex items-center gap-4 mb-4">
-                    <div className="w-3 h-3 rounded-full bg-medical-gold" />
+                    <div className="w-3 h-3 rounded-full bg-medical-royal" />
                     <span className="text-xs font-bold uppercase tracking-widest text-medical-navy">Our Visionary Founders</span>
                   </div>
                   <p className="text-medical-muted text-sm font-medium leading-relaxed italic">
@@ -110,15 +123,15 @@ const About = () => {
                   <div className="grid grid-cols-1 sm:grid-cols-3 gap-8 pt-8 border-t border-medical-border">
                     <div className="text-center">
                       <h4 className="text-4xl font-bold text-medical-navy mb-1 tracking-tight">12+</h4>
-                      <p className="text-[10px] uppercase tracking-[0.3em] text-medical-gold font-bold">Years of Service</p>
+                      <p className="text-[10px] uppercase tracking-[0.3em] text-medical-royal font-bold">Years of Service</p>
                     </div>
                     <div className="text-center">
                       <h4 className="text-4xl font-bold text-medical-navy mb-1 tracking-tight">1st</h4>
-                      <p className="text-[10px] uppercase tracking-[0.3em] text-medical-gold font-bold">In South Kanpur</p>
+                      <p className="text-[10px] uppercase tracking-[0.3em] text-medical-royal font-bold">In South Kanpur</p>
                     </div>
                     <div className="text-center">
                       <h4 className="text-4xl font-bold text-medical-navy mb-1 tracking-tight">24/7</h4>
-                      <p className="text-[10px] uppercase tracking-[0.3em] text-medical-gold font-bold">Patient Care</p>
+                      <p className="text-[10px] uppercase tracking-[0.3em] text-medical-royal font-bold">Patient Care</p>
                     </div>
                   </div>
                 </div>
@@ -141,8 +154,8 @@ const About = () => {
                 { title: 'Modular OT', icon: Microscope, desc: 'The region\'s first high-standard modular operation theatre.' },
                 { title: 'Joint Replacement', icon: Award, desc: 'Advanced joint replacement surgery with unmatched success rates.' },
               ].map((item, idx) => (
-                <div key={idx} className="bg-white p-12 rounded-[3rem] shadow-luxury border border-medical-border text-center group hover:border-medical-gold transition-all duration-500">
-                  <div className="w-20 h-20 rounded-[2rem] bg-medical-bg mx-auto mb-10 flex items-center justify-center text-medical-gold group-hover:bg-medical-gold group-hover:text-white transition-all duration-500">
+                <div key={idx} className="bg-white p-12 rounded-[3rem] shadow-luxury border border-medical-border text-center group hover:border-medical-royal transition-all duration-500">
+                  <div className="w-20 h-20 rounded-[2rem] bg-medical-bg mx-auto mb-10 flex items-center justify-center text-medical-royal group-hover:bg-medical-royal group-hover:text-white transition-all duration-500">
                     <item.icon size={36} />
                   </div>
                   <h3 className="text-2xl font-serif font-bold text-medical-navy mb-4">{item.title}</h3>
@@ -160,7 +173,7 @@ const About = () => {
             {/* Vision */}
             <div className="bg-medical-navy rounded-[4rem] p-16 text-white shadow-luxury relative overflow-hidden">
               <div className="absolute top-0 right-0 w-32 h-32 bg-white/5 rounded-full -mr-16 -mt-16" />
-              <h3 className="text-4xl font-serif font-bold mb-12 text-medical-gold">Our Vision</h3>
+              <h3 className="text-4xl font-serif font-bold mb-12 text-white">Our Vision</h3>
               <ul className="space-y-6">
                 {[
                   'Lead through honesty and integrity',
@@ -171,7 +184,7 @@ const About = () => {
                   'Develop & share success'
                 ].map((point, idx) => (
                   <li key={idx} className="flex items-start gap-4">
-                    <div className="w-6 h-6 rounded-full bg-medical-gold/20 flex items-center justify-center text-medical-gold shrink-0 mt-1">
+                    <div className="w-6 h-6 rounded-full bg-medical-royal/20 flex items-center justify-center text-medical-royal shrink-0 mt-1">
                       <Star size={14} fill="currentColor" />
                     </div>
                     <span className="text-white/80 font-medium">{point}</span>
@@ -192,7 +205,7 @@ const About = () => {
                   'Highest order patient care at affordable rates without compromise.'
                 ].map((policy, idx) => (
                   <div key={idx} className="flex gap-6 group">
-                    <div className="w-12 h-12 rounded-xl bg-medical-gold/10 flex items-center justify-center text-medical-gold shrink-0 group-hover:bg-medical-gold group-hover:text-white transition-all">
+                    <div className="w-12 h-12 rounded-xl bg-medical-royal/10 flex items-center justify-center text-medical-royal shrink-0 group-hover:bg-medical-royal group-hover:text-white transition-all">
                       <CheckCircle2 size={24} />
                     </div>
                     <p className="text-medical-muted font-medium leading-relaxed">{policy}</p>
@@ -215,29 +228,29 @@ const About = () => {
             </div>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
               <div className="premium-card bg-white p-12 text-center group">
-                <div className="w-32 h-32 rounded-full bg-medical-bg mx-auto mb-8 border-2 border-medical-gold p-1">
+                <div className="w-32 h-32 rounded-full bg-medical-bg mx-auto mb-8 border-2 border-medical-royal p-1">
                   <img src={drGaurav} alt="Dr. Gaurav" loading="lazy" className="w-full h-full object-cover rounded-full" />
                 </div>
                 <h4 className="text-2xl font-bold text-medical-navy mb-2">Dr. Gaurav Bhargava</h4>
-                <p className="text-medical-gold font-bold uppercase tracking-[0.2em] text-[10px] mb-6">Best Known Joint Replacement Surgeon</p>
+                <p className="text-medical-royal font-bold uppercase tracking-[0.2em] text-[10px] mb-6">Best Known Joint Replacement Surgeon</p>
                 <p className="text-medical-muted text-sm font-medium leading-relaxed">Most successful joint replacement surgeries in the city.</p>
               </div>
 
               <div className="premium-card bg-white p-12 text-center group">
-                <div className="w-32 h-32 rounded-full bg-medical-bg mx-auto mb-8 border-2 border-medical-gold p-1">
+                <div className="w-32 h-32 rounded-full bg-medical-bg mx-auto mb-8 border-2 border-medical-royal p-1">
                   <img src={drPriyanka} alt="Dr. Priyanka" loading="lazy" className="w-full h-full object-cover rounded-full" />
                 </div>
                 <h4 className="text-2xl font-bold text-medical-navy mb-2">Dr. Priyanka Bhargava</h4>
-                <p className="text-medical-gold font-bold uppercase tracking-[0.2em] text-[10px] mb-6">Maternity & Gynecology Expert</p>
+                <p className="text-medical-royal font-bold uppercase tracking-[0.2em] text-[10px] mb-6">Maternity & Gynecology Expert</p>
                 <p className="text-medical-muted text-sm font-medium leading-relaxed">Best known for her emphasis on normal delivery for her patients.</p>
               </div>
 
               <div className="premium-card bg-white p-12 text-center group">
-                <div className="w-32 h-32 rounded-full bg-medical-bg mx-auto mb-8 border-2 border-medical-gold p-1">
+                <div className="w-32 h-32 rounded-full bg-medical-bg mx-auto mb-8 border-2 border-medical-royal p-1">
                   <div className="w-full h-full bg-medical-navy rounded-full flex items-center justify-center text-white text-3xl font-serif">RB</div>
                 </div>
                 <h4 className="text-2xl font-bold text-medical-navy mb-2">Dr. R.R. Bhargava</h4>
-                <p className="text-medical-gold font-bold uppercase tracking-[0.2em] text-[10px] mb-6">Renowned Chest Specialist</p>
+                <p className="text-medical-royal font-bold uppercase tracking-[0.2em] text-[10px] mb-6">Renowned Chest Specialist</p>
                 <p className="text-medical-muted text-sm font-medium leading-relaxed">Practicing since 1965, treating many patients successfully.</p>
               </div>
             </div>
@@ -248,7 +261,7 @@ const About = () => {
         <section className="py-32 bg-medical-navy relative overflow-hidden">
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(212,169,95,0.05),transparent_70%)]" />
           <div className="section-container text-center mb-24 relative z-10">
-            <span className="text-medical-gold uppercase tracking-[0.3em] font-bold text-sm">Our Core Pillars</span>
+            <span className="text-white uppercase tracking-[0.3em] font-bold text-sm">Our Core Pillars</span>
             <h2 className="text-4xl md:text-6xl font-serif font-bold text-white mt-4">Why Choose Us</h2>
           </div>
           <div className="section-container grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 relative z-10">
@@ -259,11 +272,11 @@ const About = () => {
               { title: 'Excellence', label: 'We do the best thing', icon: Award, desc: 'Teamwork bringing advanced technology and best practices to bear in care.' },
             ].map((pillar, idx) => (
               <div key={idx} className="bg-white/5 backdrop-blur-xl p-10 rounded-[3rem] border border-white/10 text-center hover:bg-white/10 transition-all duration-500">
-                <div className="w-16 h-16 rounded-2xl bg-medical-gold/20 mx-auto mb-8 flex items-center justify-center text-medical-gold">
+                <div className="w-16 h-16 rounded-2xl bg-medical-royal/20 mx-auto mb-8 flex items-center justify-center text-white">
                   <pillar.icon size={32} />
                 </div>
                 <h4 className="text-2xl font-bold text-white mb-2">{pillar.title}</h4>
-                <p className="text-medical-gold text-[10px] font-bold uppercase tracking-[0.2em] mb-4">{pillar.label}</p>
+                <p className="text-white text-[10px] font-bold uppercase tracking-[0.2em] mb-4">{pillar.label}</p>
                 <p className="text-white/60 text-sm leading-relaxed font-medium">{pillar.desc}</p>
               </div>
             ))}
@@ -287,19 +300,19 @@ const About = () => {
                    <div className="w-24 h-24 bg-white rounded-xl shadow-sm border border-medical-border flex items-center justify-center p-4 mb-4">
                       <span className="font-bold text-xs text-medical-navy">NABH</span>
                    </div>
-                   <p className="text-[10px] font-bold text-medical-gold uppercase tracking-widest">Quality Accredited</p>
+                   <p className="text-[10px] font-bold text-medical-royal uppercase tracking-widest">Quality Accredited</p>
                 </div>
                 <div className="text-center">
                    <div className="w-24 h-24 bg-white rounded-xl shadow-sm border border-medical-border flex items-center justify-center p-4 mb-4">
                       <span className="font-bold text-xs text-medical-navy">JAS-NAZ</span>
                    </div>
-                   <p className="text-[10px] font-bold text-medical-gold uppercase tracking-widest">International</p>
+                   <p className="text-[10px] font-bold text-medical-royal uppercase tracking-widest">International</p>
                 </div>
                 <div className="text-center">
                    <div className="w-24 h-24 bg-white rounded-xl shadow-sm border border-medical-border flex items-center justify-center p-4 mb-4">
                       <span className="font-bold text-xs text-medical-navy">QCI</span>
                    </div>
-                   <p className="text-[10px] font-bold text-medical-gold uppercase tracking-widest">Quality Council</p>
+                   <p className="text-[10px] font-bold text-medical-royal uppercase tracking-widest">Quality Council</p>
                 </div>
               </div>
             </div>
@@ -313,7 +326,7 @@ const About = () => {
                <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_-20%,rgba(212,169,95,0.1),transparent_70%)] opacity-60" />
                <div className="relative z-10 max-w-4xl mx-auto">
                  <h2 className="text-5xl md:text-8xl font-serif font-bold text-white mb-12 leading-tight tracking-tight">
-                   Committed to <br /><span className="text-medical-gold">Clinical Safety</span>
+                   Committed to <br /><span className="text-white">Clinical Safety</span>
                  </h2>
                  <p className="text-white/80 text-xl font-medium mb-16 max-w-2xl mx-auto leading-relaxed">
                    Providing the best quality services to the people of Kanpur, with honesty, integrity, and compassion.

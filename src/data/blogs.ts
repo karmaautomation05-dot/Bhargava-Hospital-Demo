@@ -1045,7 +1045,7 @@ PCOS may not have a cure yet — and that is a valid source of frustration, grie
     title: 'Spinal Cord Injury After Accident — What Doctors Do First',
     excerpt: 'A critical look into the immediate medical protocols and trauma care steps taken following a severe spinal cord injury.',
     category: 'Trauma Care',
-    author: 'BMTC Trauma Team',
+    author: 'Bhargava Medical and Trauma Centre Trauma Team',
     date: 'Jun 12, 2023',
     image: blogSpinalInjury,
     content: `

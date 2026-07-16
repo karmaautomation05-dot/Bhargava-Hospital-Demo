@@ -1,43 +1,61 @@
 import { motion } from 'framer-motion';
-import { ArrowRight, HeartPulse, Baby, UserCheck, Activity, Bone, Siren } from 'lucide-react';
+import { ArrowRight, HeartPulse, Baby, Bone, Siren, Heart, Scissors, Activity, Crosshair, ClipboardCheck } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 const services = [
   {
     title: "Joint Replacement",
-    desc: "Advanced robotic-assisted knee and hip replacement surgeries by globally trained specialists.",
+    desc: "Advanced knee, hip, and shoulder replacement surgeries using modern techniques to restore mobility, reduce pain, and improve quality of life.",
     icon: Bone,
-    link: "/services#orthopedics"
+    link: "/services#joint-replacement"
   },
   {
-    title: "High Risk Pregnancy",
-    desc: "Comprehensive maternal care for complex pregnancies ensuring mother and baby safety.",
-    icon: Baby,
-    link: "/services#maternity"
+    title: "Arthroscopy & Sports Injury",
+    desc: "Minimally invasive arthroscopic procedures for ligament tears, meniscus injuries, sports trauma, and faster recovery with expert orthopedic care.",
+    icon: Activity,
+    link: "/services#arthroscopy-sports-injury"
   },
   {
-    title: "Trauma & Emergency",
-    desc: "24/7 dedicated trauma center equipped to handle all critical medical emergencies rapidly.",
+    title: "Trauma & Emergency Care",
+    desc: "24×7 emergency management for fractures, accident injuries, complex trauma, and orthopedic emergencies with rapid diagnosis and treatment.",
     icon: Siren,
-    link: "/services#emergency"
+    link: "/services#trauma-emergency-care"
   },
   {
-    title: "Cardiac Care",
-    desc: "State-of-the-art cardiology department for accurate diagnosis and interventional treatments.",
-    icon: HeartPulse,
-    link: "/services#cardiology"
+    title: "High-Risk Pregnancy Care",
+    desc: "Specialized care for high-risk pregnancies with advanced maternal monitoring, fetal assessment, and personalized treatment for safer outcomes.",
+    icon: Baby,
+    link: "/services#high-risk-pregnancy-care"
+  },
+  {
+    title: "Advanced Infertility Treatment",
+    desc: "Comprehensive fertility evaluation and personalized infertility treatments designed to help couples achieve successful parenthood.",
+    icon: Heart,
+    link: "/services#advanced-infertility-treatment"
+  },
+  {
+    title: "Laparoscopic Surgery",
+    desc: "Advanced minimally invasive surgical procedures offering smaller incisions, reduced pain, faster recovery, and shorter hospital stays.",
+    icon: Crosshair,
+    link: "/services#laparoscopic-surgery"
   },
   {
     title: "General Surgery",
-    desc: "Minimally invasive laparoscopic procedures for quicker recovery and less postoperative pain.",
-    icon: Activity,
-    link: "/services#surgery"
+    desc: "Expert surgical management for hernia, gallbladder, appendix, breast, thyroid, and other general surgical conditions.",
+    icon: Scissors,
+    link: "/services#general-surgery"
   },
   {
-    title: "Expert Consultation",
-    desc: "Direct access to top-tier medical consultants across 15+ specialties under one roof.",
-    icon: UserCheck,
-    link: "/doctors"
+    title: "Advanced Physician Management",
+    desc: "Comprehensive diagnosis and long-term management of diabetes, hypertension, thyroid disorders, infections, and other chronic medical conditions.",
+    icon: ClipboardCheck,
+    link: "/services#advanced-physician-management"
+  },
+  {
+    title: "Neonatal & Pediatric Care",
+    desc: "Dedicated healthcare for newborns, infants, and children, including newborn care, vaccinations, growth monitoring, and pediatric consultations.",
+    icon: HeartPulse,
+    link: "/services#neonatal-pediatric-care"
   }
 ];
 
@@ -72,10 +90,10 @@ const ServicesGrid = () => {
               className="premium-card group relative overflow-hidden bg-white"
             >
               <div className="p-12 relative z-10 h-full flex flex-col">
-                <div className="w-16 h-16 rounded-2xl bg-medical-bg flex items-center justify-center text-medical-gold mb-10 group-hover:bg-medical-royal group-hover:text-white group-hover:shadow-sm transition-all duration-500 border border-medical-border">
+                <div className="w-16 h-16 rounded-2xl bg-medical-bg flex items-center justify-center text-medical-royal mb-10 group-hover:bg-medical-royal group-hover:text-white group-hover:shadow-sm transition-all duration-500 border border-medical-border">
                   <service.icon size={32} />
                 </div>
-                <h3 className="text-2xl font-serif font-bold text-medical-navy mb-6 group-hover:text-medical-royal transition-colors">
+                <h3 className="text-2xl font-serif font-bold text-medical-navy mb-6 group-hover:text-white transition-colors">
                   {service.title}
                 </h3>
                 <p className="text-medical-muted leading-relaxed mb-10 text-[15px] flex-grow font-medium">

@@ -49,7 +49,7 @@ const VideoCard = ({ videoId, index }: { videoId: string; index: number }) => {
       </div>
       <div className="p-6 text-center border-t border-medical-border/50">
         <h3 className="font-serif font-bold text-medical-navy text-lg">Patient Journey & Recovery</h3>
-        <p className="text-medical-muted text-sm mt-2">Hear directly from our patients about their experiences and successful treatments at BMTC.</p>
+        <p className="text-medical-muted text-sm mt-2">Hear directly from our patients about their experiences and successful treatments at Bhargava Medical and Trauma Centre.</p>
       </div>
     </motion.div>
   );
@@ -73,16 +73,16 @@ const Testimonials = () => {
       </Helmet>
 
       {/* Hero Section */}
-      <section className="py-24 relative overflow-hidden bg-gradient-to-r from-[#071B34] via-cyan-600 to-cyan-400">
+      <section className="py-24 relative overflow-hidden bg-gradient-to-br from-[#071B34] via-cyan-800 to-cyan-900">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(212,169,95,0.08),transparent_40%)]" />
         <div className="section-container relative z-10 text-center">
           <motion.div
             initial={{ y: 20, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
           >
-            <span className="text-medical-gold uppercase tracking-[0.3em] font-bold text-sm mb-4 block">Success Stories</span>
+            <span className="text-white uppercase tracking-[0.3em] font-bold text-sm mb-4 block">Success Stories</span>
             <h1 className="text-4xl sm:text-5xl md:text-7xl font-serif font-bold text-white mb-6">
-              Patient <span className="text-medical-gold">Testimonials</span>
+              Patient <span className="text-white">Testimonials</span>
             </h1>
             <p className="text-white/80 max-w-2xl mx-auto text-lg mb-10">
               Listen to real stories of recovery, hope, and expert medical care from the people we've had the privilege to serve.

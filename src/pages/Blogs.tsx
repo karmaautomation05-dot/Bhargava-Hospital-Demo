@@ -39,7 +39,7 @@ const Blogs = () => {
             className="max-w-3xl"
           >
             <h1 className="text-5xl lg:text-7xl font-serif font-bold text-white mb-6 leading-tight">
-              Health & Wellness <span className="text-medical-gold">Insights</span>
+              Health & Wellness <span className="text-white">Insights</span>
             </h1>
             <p className="text-xl text-white/80 leading-relaxed font-medium">
               Stay informed with the latest medical news, expert tips, and patient care guides from our top specialists.

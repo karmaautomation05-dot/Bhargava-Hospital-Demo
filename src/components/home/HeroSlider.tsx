@@ -22,7 +22,7 @@ const slides = [
     subtitle:
       "Leading multi-specialty healthcare provider in Kanpur, committed to excellence in trauma, orthopedics, and maternal health.",
     image: slide1Img,
-    tag: "Welcome to BMTC"
+    tag: "Welcome to Bhargava Medical and Trauma Centre"
   },
   {
     title: "24/7 Emergency & Trauma",
@@ -66,7 +66,7 @@ const HeroSlider = () => {
             {({ isActive }) => (
               <>
                 {/* Background gradient applied per slide to ensure opacity works without mixing */}
-                <div className="absolute inset-0 bg-gradient-to-r from-[#071B34] via-cyan-600 to-cyan-400 z-0" />
+                <div className="absolute inset-0 bg-gradient-to-br from-[#071B34] via-cyan-800 to-cyan-900 z-0" />
                 <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(212,169,95,0.08),transparent_40%)] z-0" />
                 
                 {/* Full-bleed Image on Right */}

@@ -1,12 +1,11 @@
-import { useState, useEffect } from 'react';
 import { Helmet } from 'react-helmet-async';
 import HeroSlider from '../components/home/HeroSlider';
 import StatsSection from '../components/home/StatsSection';
 import ServicesGrid from '../components/home/ServicesGrid';
 import Testimonials from '../components/home/Testimonials';
 import BlogsSection from '../components/home/BlogsSection';
-import { motion, AnimatePresence } from 'framer-motion';
-import { ArrowRight, ShieldCheck, Clock, Award, ChevronLeft, ChevronRight } from 'lucide-react';
+import { motion } from 'framer-motion';
+import { Clock, Award, ArrowRight, Stethoscope, Heart, Calendar, Phone, Activity, GraduationCap } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 // Import images
@@ -15,41 +14,50 @@ import drGaurav from '../assets/images/doctors/Gaurav Bhargava.png';
 import modularOtImg from '../assets/images/hospital/modular_ot.png';
 import icuNicuImg from '../assets/images/hospital/icu_nicu.png';
 import diagnosticImg from '../assets/images/hospital/diagnostic_services.png';
+import traumaImg from '../assets/images/hospital/trauma_response.png';
+import pharmacyImg from '../assets/images/hospital/pharmacy.png';
+import bmtc2Img from '../assets/images/hospital/bmtc2.png';
+import ambulanceImg from '../assets/images/hospital/ambulance.png';
 
 const FEATURED_DOCTORS = [
   {
     name: "Dr. Priyanka Bhargava",
+    qualifications: "MBBS, MS (Obstetrics & Gynecology)",
     title: "Pioneer in Women's Health",
     role: "Senior Consultant",
-    exp: "20+ Years Exp.",
-    desc: "A renowned expert in High-Risk Pregnancy and Gynecology, Dr. Priyanka Bhargava has dedicated over 20+ years to providing advanced medical care. Her patient-first approach has made BMTC a center of trust for thousands of families in Kanpur.",
+    exp: "20+ Years Experience",
+    desc: "A renowned expert in High-Risk Pregnancy and Gynecology with over 20 years of dedicated patient care. Dr. Priyanka Bhargava is committed to advancing women's health at Bhargava Medical and Trauma Centre Kanpur.",
     image: drPriyanka,
-    specialty: "Gynecology & Obstetrics"
+    imgPosition: 'center 25%',
+    opdTiming: "11:00 AM – 2:00 PM",
+    specialties: ["Gynecology", "High-Risk Pregnancy", "Infertility Care"],
+    slug: "dr-priyanka-bhargava",
+    trust: [
+      { value: "20+ Years", label: "Years of Experience" },
+      { value: "10,000+", label: "Patients Treated" },
+      { value: "1,500+", label: "Successful Procedures" },
+    ],
   },
   {
-    name: "Dr. Gaurav Bhargava (MS)",
+    name: "Dr. Gaurav Bhargava",
+    qualifications: "MBBS, MS (Orthopaedics)",
     title: "Excellence in Orthopaedics",
-    role: "Senior Surgeon",
-    exp: "18+ Years Exp.",
-    desc: "The best known Orthopaedist in Kanpur. A well-known knee replacement surgeon, he leaves no stone unturned in taking care of his patients, bringing advanced surgical precision to joint and trauma care.",
+    role: "Consultant Orthopaedic Surgeon",
+    exp: "18+ Years Experience",
+    desc: "A highly skilled Orthopaedic Surgeon specializing in Joint Replacement and Sports Medicine. He combines surgical precision with compassionate care for outstanding patient outcomes.",
     image: drGaurav,
-    specialty: "Orthopaedics & Joint Replacement"
-  }
+    opdTiming: "10:00 AM – 2:00 PM",
+    specialties: ["Orthopaedics", "Joint Replacement", "Sports Injury"],
+    slug: "dr-gaurav-bhargava",
+    trust: [
+      { value: "18+ Years", label: "Years of Experience" },
+      { value: "8,000+", label: "Patients Treated" },
+      { value: "3,000+", label: "Successful Procedures" },
+    ],
+  },
 ];
 
 const Home = () => {
-  const [currentDoc, setCurrentDoc] = useState(0);
-
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setCurrentDoc((prev) => (prev + 1) % FEATURED_DOCTORS.length);
-    }, 8000);
-    return () => clearInterval(timer);
-  }, []);
-
-  const nextDoc = () => setCurrentDoc((prev) => (prev + 1) % FEATURED_DOCTORS.length);
-  const prevDoc = () => setCurrentDoc((prev) => (prev - 1 + FEATURED_DOCTORS.length) % FEATURED_DOCTORS.length);
-
   return (
     <motion.div
       initial={{ opacity: 0 }}
@@ -78,124 +86,118 @@ const Home = () => {
           <ServicesGrid />
         </section>
 
-        {/* Featured Doctor Carousel */}
+        {/* Featured Doctors */}
         <section className="py-32 relative overflow-hidden bg-gradient-to-br from-[#EEF5FF] via-[#F6FAFF] to-[#E3F2FD]">
           <div className="section-container relative z-10">
-            <div className="flex justify-between items-end mb-12">
-              <div>
-                <span className="uppercase tracking-[0.35em] text-sm font-bold text-[#2563EB]">
-                  Our Medical Leadership
-                </span>
-                <h2 className="text-4xl md:text-5xl font-serif font-bold text-[#0F172A] mt-4">
-                  Expert Care by Distinguished Specialists
-                </h2>
-              </div>
-              <div className="flex gap-4 mb-2">
-                <button onClick={prevDoc} className="w-14 h-14 rounded-full border border-[#2563EB]/20 flex items-center justify-center text-[#2563EB] hover:bg-[#2563EB] hover:text-white transition-all">
-                  <ChevronLeft size={24} />
-                </button>
-                <button onClick={nextDoc} className="w-14 h-14 rounded-full border border-[#2563EB]/20 flex items-center justify-center text-[#2563EB] hover:bg-[#2563EB] hover:text-white transition-all">
-                  <ChevronRight size={24} />
-                </button>
-              </div>
+            <div className="text-center mb-20">
+              <span className="uppercase tracking-[0.35em] text-sm font-bold text-[#2563EB]">
+                Our Medical Leadership
+              </span>
+              <h2 className="text-4xl md:text-5xl font-serif font-bold text-[#0F172A] mt-4">
+                Meet Our Distinguished Medical Specialists
+              </h2>
             </div>
 
-            <div className="relative min-h-[600px] lg:min-h-[auto]">
-              <AnimatePresence mode="wait">
-                <motion.div
-                  key={currentDoc}
-                  initial={{ opacity: 0, x: 50 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  exit={{ opacity: 0, x: -50 }}
-                  transition={{ duration: 0.6, ease: "easeOut" }}
-                  className="rounded-[3rem] p-12 md:p-24 flex flex-col lg:flex-row items-center gap-20 relative overflow-hidden border border-white/60 bg-gradient-to-br from-white via-[#F8FBFF] to-[#EDF6FF] shadow-[0_20px_80px_rgba(37,99,235,0.08)]"
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-stretch">
+              {FEATURED_DOCTORS.map((doctor) => (
+                <div
+                  key={doctor.name}
+                  className="group h-full rounded-[2.5rem] p-12 md:p-14 flex flex-col items-center text-center relative overflow-hidden border border-[#E2E8F0] bg-white shadow-[0_20px_80px_rgba(37,99,235,0.08)] hover:shadow-[0_30px_100px_rgba(37,99,235,0.14)] transition-all duration-500"
                 >
-                  {/* Luxury Glow */}
-                  <div className="absolute top-0 right-0 w-1/2 h-full bg-gradient-to-br from-[#38BDF8]/20 via-[#2563EB]/10 to-transparent -skew-x-12 translate-x-1/4 opacity-70" />
-
-                  {/* LEFT IMAGE */}
-                  <div className="w-full lg:w-1/2 relative">
-                    <div className="relative inline-block w-full">
-                      <div className="w-full aspect-[4/5] rounded-[3rem] overflow-hidden shadow-[0_15px_50px_rgba(0,0,0,0.12)] border border-white/40 group/img">
-                        <img
-                          src={FEATURED_DOCTORS[currentDoc].image}
-                          alt={FEATURED_DOCTORS[currentDoc].name}
-                          loading="lazy"
-                          className="w-full h-full object-cover transition-transform duration-700 group-hover/img:scale-105"
-                        />
-                        <div className="absolute inset-0 bg-gradient-to-t from-[#0F172A]/40 via-transparent to-transparent opacity-0 group-hover/img:opacity-100 transition-opacity duration-500" />
-                      </div>
-
-                      {/* Experience Floating Card */}
-                      <div className="absolute -bottom-10 -right-10 bg-gradient-to-br from-[#0F172A] to-[#1E3A5F] p-10 rounded-[2.5rem] shadow-[0_20px_60px_rgba(15,23,42,0.25)] hidden md:block border border-white/10">
-                        <div className="flex items-center gap-6">
-                          <div className="w-16 h-16 rounded-2xl bg-white/10 flex items-center justify-center text-[#F4C27A]">
-                            <Award size={32} />
-                          </div>
-                          <div>
-                            <p className="text-[10px] text-[#F4C27A] uppercase font-bold tracking-[0.4em] mb-2">
-                              {FEATURED_DOCTORS[currentDoc].role}
-                            </p>
-                            <p className="text-2xl font-serif font-bold text-white tracking-tight">
-                              {FEATURED_DOCTORS[currentDoc].exp}
-                            </p>
-                          </div>
-                        </div>
-                      </div>
+                  {/* Doctor Portrait & Experience Badge */}
+                  <div className="relative mb-10 shrink-0">
+                    <div className="w-56 h-56 sm:w-60 sm:h-60 md:w-64 md:h-64 lg:w-72 lg:h-72 rounded-full overflow-hidden shadow-[0_15px_50px_rgba(0,0,0,0.12)] border-4 border-white ring-2 ring-[#2563EB]/20">
+                      <img
+                        src={doctor.image}
+                        alt={doctor.name}
+                        loading="lazy"
+                        className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                        style={doctor.imgPosition ? { objectPosition: doctor.imgPosition } : undefined}
+                      />
                     </div>
-                  </div>
-
-                  {/* RIGHT CONTENT */}
-                  <div className="w-full lg:w-1/2 relative z-10">
-                    <span className="uppercase tracking-[0.35em] text-sm font-bold text-[#2563EB]">
-                      {FEATURED_DOCTORS[currentDoc].title}
+                    {/* Experience Badge */}
+                    <span className="absolute left-1/2 -translate-x-1/2 bottom-0 translate-y-1/2 inline-flex items-center gap-2 px-6 py-2.5 rounded-full bg-gradient-to-r from-[#2563EB] to-[#1D4ED8] text-white text-[13px] font-bold shadow-lg whitespace-nowrap">
+                      <Award size={14} />
+                      {doctor.exp}
                     </span>
+                  </div>
 
-                    <h2 className="font-serif font-bold text-[#0F172A] mb-8 leading-tight tracking-tight mt-6">
-                      <span className="text-3xl md:text-4xl block mb-2">Compassionate Care by</span>
-                      <span className="text-4xl md:text-6xl text-[#2563EB] block">
-                        {FEATURED_DOCTORS[currentDoc].name}
+                  {/* Name */}
+                  <h3 className="font-serif font-bold text-[#0F172A] text-[30px] md:text-[36px] leading-tight mb-3">
+                    {doctor.name}
+                  </h3>
+
+                  {/* Qualifications */}
+                  <p className="text-[15px] text-[#475569] mb-2">
+                    <span className="inline-flex items-center gap-1.5">
+                      <GraduationCap size={14} className="text-[#2563EB] shrink-0" />
+                      {doctor.qualifications}
+                    </span>
+                  </p>
+
+                  {/* Designation */}
+                  <p className="text-[13px] font-semibold text-[#334155] uppercase tracking-[0.15em] mb-6">
+                    {doctor.role}
+                  </p>
+
+                  {/* Description */}
+                  <p className="text-[16px] text-[#334155] leading-relaxed mb-7 max-w-[95%]">
+                    {doctor.desc}
+                  </p>
+
+                  {/* Specialty Pills */}
+                  <div className="flex flex-wrap justify-center gap-3 mb-7">
+                    {doctor.specialties.map((spec, i) => (
+                      <span
+                        key={spec}
+                        className="inline-flex items-center gap-1.5 px-4 py-2 rounded-full bg-white border border-[#E2E8F0] text-[13px] font-semibold text-[#334155] shadow-sm"
+                      >
+                        {i === 0 && <Stethoscope size={14} className="text-[#2563EB] shrink-0" />}
+                        {i === 1 && <Heart size={14} className="text-[#2563EB] shrink-0" />}
+                        {i === 2 && <Activity size={14} className="text-[#2563EB] shrink-0" />}
+                        {spec}
                       </span>
-                    </h2>
+                    ))}
+                    <span className="inline-flex items-center gap-1.5 px-4 py-2 rounded-full bg-gradient-to-r from-[#2563EB]/10 to-[#38BDF8]/10 border border-[#2563EB]/20 text-[13px] font-semibold text-[#2563EB] shadow-sm">
+                      <Clock size={14} />
+                      24/7 Care
+                    </span>
+                  </div>
 
-                    <p className="text-[#475569] text-lg leading-relaxed mb-12">
-                      {FEATURED_DOCTORS[currentDoc].desc}
-                    </p>
-
-                    {/* FEATURES */}
-                    <div className="grid grid-cols-2 gap-10 mb-12">
-                      <div className="flex items-center gap-4 text-sm text-[#334155] font-semibold uppercase tracking-wider">
-                        <div className="w-12 h-12 rounded-xl bg-white shadow-md flex items-center justify-center text-[#D4A574]">
-                          <ShieldCheck size={22} />
-                        </div>
-                        {FEATURED_DOCTORS[currentDoc].specialty}
-                      </div>
-                      <div className="flex items-center gap-4 text-sm text-[#334155] font-semibold uppercase tracking-wider">
-                        <div className="w-12 h-12 rounded-xl bg-white shadow-md flex items-center justify-center text-[#2563EB]">
-                          <Clock size={22} />
-                        </div>
-                        24/7 Consultation
-                      </div>
+                  {/* Availability */}
+                  <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-1.5 w-full mb-7 px-5 py-3.5 rounded-xl bg-white border border-[#CBD5E1] shadow-sm">
+                    <div className="flex items-center gap-1.5">
+                      <Calendar size={13} className="text-[#2563EB] shrink-0" />
+                      <span className="text-[12px] font-medium text-[#475569] whitespace-nowrap">Mon – Sat</span>
                     </div>
-
-                    {/* BUTTONS */}
-                    <div className="flex flex-wrap gap-8">
-                      <Link
-                        to="/appointment"
-                        className="px-12 py-5 rounded-2xl bg-gradient-to-r from-[#2563EB] to-[#38BDF8] text-white font-semibold shadow-[0_15px_40px_rgba(37,99,235,0.25)] hover:scale-105 transition-all duration-300"
-                      >
-                        Book Appointment
-                      </Link>
-                      <Link
-                        to="/doctors"
-                        className="px-12 py-5 rounded-2xl bg-white border border-[#DCE7F5] text-[#0F172A] font-semibold flex items-center gap-3 hover:shadow-lg transition-all duration-300"
-                      >
-                        View Profile
-                      </Link>
+                    <div className="flex items-center gap-1.5">
+                      <Clock size={13} className="text-[#2563EB] shrink-0" />
+                      <span className="text-[12px] font-medium text-[#475569] whitespace-nowrap">OPD: {doctor.opdTiming}</span>
+                    </div>
+                    <div className="flex items-center gap-1.5">
+                      <Phone size={13} className="text-[#2563EB] shrink-0" />
+                      <span className="text-[12px] font-medium text-[#475569] whitespace-nowrap">24×7 Emergency</span>
                     </div>
                   </div>
-                </motion.div>
-              </AnimatePresence>
+
+                  {/* Buttons */}
+                  <div className="flex gap-4 w-full mt-auto">
+                    <Link
+                      to="/appointment"
+                      className="group/btn flex-1 text-center px-6 py-4 rounded-2xl bg-gradient-to-r from-[#2563EB] to-[#38BDF8] text-white font-semibold text-[16px] shadow-lg hover:shadow-xl hover:scale-[1.02] transition-all duration-300"
+                    >
+                      Book Appointment
+                      <ArrowRight size={17} className="inline ml-1.5 transition-transform duration-300 group-hover/btn:translate-x-1" />
+                    </Link>
+                    <Link
+                      to={`/doctor/${doctor.slug}`}
+                      className="flex-1 text-center px-6 py-4 rounded-2xl bg-white border border-[#CBD5E1] text-[#0F172A] font-semibold text-[16px] hover:shadow-lg hover:border-[#2563EB]/30 transition-all duration-300"
+                    >
+                      View Full Profile
+                    </Link>
+                  </div>
+                </div>
+              ))}
             </div>
           </div>
         </section>
@@ -204,30 +206,45 @@ const Home = () => {
         <section className="py-32 relative bg-[#F8FAFC]">
           <div className="section-container text-center mb-24">
             <span className="uppercase tracking-[0.35em] text-sm font-bold text-[#2563EB]">
-              Infrastructure
+              Medical Infrastructure
             </span>
             <h2 className="text-5xl font-serif font-bold text-[#0F172A] mt-6">
-              Luxury Medical
-              <span className="text-[#2563EB]"> Facilities</span>
+              Advanced Healthcare
+              <span className="text-[#2563EB]"> Infrastructure</span>
             </h2>
           </div>
 
-          <div className="section-container grid grid-cols-1 md:grid-cols-3 gap-12">
+          <div className="section-container grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
             {[
               {
-                title: 'Modular OT',
-                desc: 'Advanced surgical suites with laminar flow and state-of-the-art instrumentation.',
+                title: 'Modular Operation Theatres',
+                desc: 'State-of-the-art modular operation theatres equipped with laminar airflow, advanced anesthesia systems, and modern surgical technology to ensure precision, safety, and infection-controlled procedures.',
                 image: modularOtImg,
               },
               {
-                title: 'NICU & ICU',
-                desc: 'Specialized critical care units for newborns and adults with 24/7 monitoring.',
+                title: 'Intensive Care Unit (ICU) & Neonatal ICU (NICU)',
+                desc: 'Advanced critical care units providing round-the-clock monitoring, life-support systems, and specialized care for critically ill adults, newborns, and high-risk patients.',
                 image: icuNicuImg,
               },
               {
-                title: 'Diagnostic Lab',
-                desc: 'Fully automated 24/7 diagnostic services with advanced imaging capabilities.',
-                image: diagnosticImg,
+                title: 'Advanced Endoscopy & Minimally Invasive Surgical Suite',
+                desc: 'Equipped with advanced laparoscopic, hysteroscopic, arthroscopic, and endoscopic systems for minimally invasive procedures, offering greater precision, reduced pain, and faster recovery.',
+                image: bmtc2Img,
+              },
+              {
+                title: 'Trauma & Emergency Response',
+                desc: 'Dedicated emergency and trauma facilities with rapid assessment, fracture management, accident care, emergency stabilization, and immediate access to specialized medical teams.',
+                image: traumaImg,
+              },
+              {
+                title: '24×7 Pharmacy',
+                desc: 'Fully stocked in-house pharmacy operating round the clock, ensuring timely availability of essential medicines, surgical consumables, and emergency medications.',
+                image: pharmacyImg,
+              },
+              {
+                title: 'Ambulance Service',
+                desc: '24/7 emergency ambulance support equipped with life-support systems for rapid patient transport. Our ambulances are staffed by trained emergency medical technicians ready to respond at a moment\'s notice.',
+                image: ambulanceImg,
               },
             ].map((item, i) => (
               <Link
@@ -261,7 +278,7 @@ const Home = () => {
               to="/facilities"
               className="inline-flex items-center gap-3 px-10 py-5 rounded-2xl border border-[#CBD5E1] text-[#0F172A] font-semibold hover:bg-white transition-all"
             >
-              Explore Infrastructure
+              Explore Medical Facilities
               <ArrowRight size={22} />
             </Link>
           </div>

@@ -2,15 +2,19 @@ import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X, Phone, Calendar, ChevronDown } from 'lucide-react';
-import logo from '../../assets/logo/Hospital Logo.png';
 import fullLogo from '../../assets/logo/full-logo.png';
 
 // Manual cn replacement to avoid any issues with the utility
 const cn = (...classes: (string | boolean | undefined | null)[]) => classes.filter(Boolean).join(' ');
 
+interface NavItem {
+  name: string;
+  path: string;
+}
+
 interface MegaMenuSection {
   title: string;
-  items: string[];
+  items: (string | NavItem)[];
   path?: string;
 }
 
@@ -18,6 +22,7 @@ interface NavLink {
   name: string;
   path: string;
   megaMenu?: MegaMenuSection[];
+  dropdownRight?: boolean;
 }
 
 const Navbar = () => {
@@ -40,8 +45,20 @@ const Navbar = () => {
   }, [location]);
 
   const navLinks: NavLink[] = [
-    { name: 'Home', path: '/' },
+    { 
+      name: 'Specialties', 
+      path: '/doctors',
+      megaMenu: [
+        { title: 'Surgical Specialists', items: ['Orthopedics', 'General Surgery', 'Urology', 'Neuro Surgeons'] },
+        { title: 'Physicians', items: ['General Medicine', 'Cardiology', 'Chest Physician', 'Gastroentrology'] },
+        { title: 'Maternal & Child', items: ['Gynaecology', 'Peadiatrics', 'Peadiatric Surgeons'] },
+        { title: 'Specialized Care', items: ['Nephrology', 'ENT', 'Plastic Surgeon', 'Psychiatrists'] }
+      ]
+    },
+    { name: 'Dr. Priyanka Bhargava', path: '/doctor/dr-priyanka-bhargava' },
+    { name: 'Dr. Gaurav Bhargava', path: '/doctor/dr-gaurav-bhargava' },
     { name: 'About', path: '/about' },
+    { name: 'Facilities', path: '/facilities' },
     { 
       name: 'Services', 
       path: '/services',
@@ -51,19 +68,9 @@ const Navbar = () => {
       ]
     },
     { 
-      name: 'Doctors', 
-      path: '/doctors',
-      megaMenu: [
-        { title: 'Surgical Specialists', items: ['Orthopedics', 'General Surgery', 'Urology', 'Neuro Surgeons'] },
-        { title: 'Physicians', items: ['General Medicine', 'Cardiology', 'Chest Physician', 'Gastroentrology'] },
-        { title: 'Maternal & Child', items: ['Gynaecology', 'Peadiatrics', 'Peadiatric Surgeons'] },
-        { title: 'Specialized Care', items: ['Nephrology', 'ENT', 'Plastic Surgeon', 'Psychiatrists'] }
-      ]
-    },
-    { name: 'Facilities', path: '/facilities' },
-    { 
       name: 'Gallery', 
       path: '#',
+      dropdownRight: true,
       megaMenu: [
         { title: 'Photos', items: ['Hospital Infrastructure'], path: '/gallery' },
         { title: 'Videos', items: ['Patient Testimonials'], path: '/testimonials' }
@@ -74,106 +81,106 @@ const Navbar = () => {
     { name: 'Contact', path: '/contact' },
   ];
 
-  const isHome = location.pathname === '/';
-
   return (
     <>
       <nav className={cn(
         "fixed top-0 w-full z-50 transition-all duration-700",
         isScrolled 
-          ? "bg-medical-navy/95 backdrop-blur-xl border-b border-white/5 py-1.5 shadow-2xl" 
-          : "bg-medical-navy py-2.5 border-b border-white/5"
+          ? "bg-white/95 backdrop-blur-xl border-b border-medical-border/60 shadow-lg" 
+          : "bg-white border-b border-medical-border/40"
       )}>
-        <div className="max-w-[90rem] mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center gap-8 xl:gap-12">
+        <div className="max-w-[90rem] mx-auto px-4 sm:px-6 lg:px-6 flex items-center h-14 lg:h-[72px] xl:h-[76px]">
           {/* Logo */}
-          <Link to="/" className="flex items-center gap-4 group">
-            <div className="bg-white px-2 py-1 rounded-xl flex items-center justify-center group-hover:scale-105 transition-transform duration-500 shrink-0">
-              <img src={fullLogo} alt="Bhargava Medical & Trauma Center" className="h-8 sm:h-10 w-auto object-contain" />
-            </div>
-            <div className="flex flex-col justify-center">
-              <span className={cn(
-                "font-serif font-medium text-[15px] sm:text-base leading-snug transition-colors duration-500 text-white whitespace-nowrap"
-              )}>
-                Bhargava Medical & <br /> Trauma Center
-              </span>
-              <span className="text-[8px] sm:text-[9px] text-medical-gold uppercase font-bold tracking-[0.3em] mt-0.5 whitespace-nowrap">Excellence in Care</span>
+          <Link to="/" className="flex items-center group shrink-0">
+            <div className="bg-white flex items-center justify-center group-hover:scale-105 transition-transform duration-500">
+              <img src={fullLogo} alt="Bhargava Medical & Trauma Center" className="h-8 sm:h-9 lg:h-10 w-auto object-contain" />
             </div>
           </Link>
 
-          {/* Right Side Nav */}
-          <div className="hidden lg:flex items-center gap-6 xl:gap-10 ml-auto">
-            {/* Desktop Links */}
-            <div className="flex items-center gap-3 xl:gap-6">
+          {/* Nav Items */}
+          <div className="hidden lg:flex items-center justify-center flex-1 min-w-0">
+            <div className="flex items-center gap-0 xl:gap-1">
               {navLinks.map((link) => (
-              <div 
-                key={link.name}
-                className="relative"
-                onMouseEnter={() => link.megaMenu && setActiveMegaMenu(link.name)}
-                onMouseLeave={() => setActiveMegaMenu(null)}
-              >
-                <Link 
-                  to={link.path}
-                  className={cn(
-                    "font-semibold text-[13px] tracking-wide transition-all duration-500 flex items-center gap-1.5 whitespace-nowrap",
-                    location.pathname === link.path ? "text-medical-gold" : "text-white/70 hover:text-white"
-                  )}
+                <div
+                  key={link.name}
+                  className="relative shrink-0"
+                  onMouseEnter={() => link.megaMenu && setActiveMegaMenu(link.name)}
+                  onMouseLeave={() => setActiveMegaMenu(null)}
                 >
-                  {link.name}
-                  {link.megaMenu && <ChevronDown size={14} className="opacity-40" />}
-                </Link>
-                
-                {location.pathname === link.path && (
-                  <motion.div 
-                    layoutId="navIndicator"
-                    className="absolute -bottom-2 left-0 w-full h-0.5 bg-medical-gold shadow-[0_0_10px_rgba(14,165,233,0.5)]" 
-                  />
-                )}
+                  <Link
+                    to={link.path}
+                    className={cn(
+                      "px-2 xl:px-2.5 py-1.5 xl:py-2 rounded-lg font-bold text-[11px] lg:text-[12px] xl:text-[13px] tracking-wide transition-all duration-300 flex items-center gap-1 whitespace-nowrap",
+                      location.pathname === link.path
+                        ? "text-medical-royal bg-medical-royal/10"
+                        : "text-medical-navy/70 hover:text-medical-navy hover:bg-medical-navy/[0.06]"
+                    )}
+                  >
+                    {link.name}
+                    {link.megaMenu && <ChevronDown size={13} className="opacity-40" />}
+                  </Link>
 
-                <AnimatePresence>
-                  {link.megaMenu && activeMegaMenu === link.name && (
+                  {location.pathname === link.path && !link.megaMenu && (
                     <motion.div
-                      initial={{ opacity: 0, y: 15 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      exit={{ opacity: 0, y: 15 }}
-                      className="absolute top-full left-1/2 -translate-x-1/2 mt-6 w-[520px] bg-medical-navy/95 backdrop-blur-2xl border border-white/10 shadow-luxury rounded-[2rem] p-10 grid grid-cols-2 gap-12"
-                    >
-                      {link.megaMenu.map((section) => (section && (
-                        <div key={section.title}>
-                          <h4 className="font-bold text-medical-gold mb-6 text-xs uppercase tracking-[0.2em]">{section.title}</h4>
-                          <ul className="space-y-4">
-                            {section.items.map((item) => (
-                              <li key={item}>
-                                <Link 
-                                  to={section.path || `${link.path}#${item.toLowerCase().replace(/\s+/g, '-')}`} 
-                                  className="text-[14px] text-white/60 hover:text-white transition-all font-medium flex items-center gap-3 group"
-                                >
-                                  <div className="w-2 h-2 rounded-full bg-medical-royal/30 group-hover:bg-medical-gold group-hover:scale-125 transition-all" />
-                                  {item}
-                                </Link>
-                              </li>
-                            ))}
-                          </ul>
-                        </div>
-                      )))}
-                    </motion.div>
+                      layoutId="navIndicator"
+                      className="absolute -bottom-1 left-2 right-2 h-0.5 bg-medical-royal/40 rounded-full"
+                    />
                   )}
-                </AnimatePresence>
-              </div>
-            ))}
+
+                  <AnimatePresence>
+                    {link.megaMenu && activeMegaMenu === link.name && (
+                      <motion.div
+                        initial={{ opacity: 0, y: 15 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0, y: 15 }}
+                        className={cn(
+                          "absolute top-full mt-6 w-[420px] lg:w-[480px] xl:w-[520px] bg-white backdrop-blur-2xl border border-medical-border/60 shadow-luxury rounded-[2rem] p-6 lg:p-8 xl:p-10 grid grid-cols-2 gap-6 lg:gap-8 xl:gap-12",
+                          link.dropdownRight ? 'right-0' : 'left-0'
+                        )}
+                      >
+                        {link.megaMenu.map((section) => (section && (
+                          <div key={section.title}>
+                            <h4 className="font-serif font-semibold text-medical-royal mb-5 text-sm tracking-tight">{section.title}</h4>
+                            <ul className="space-y-4">
+                              {section.items.map((item) => {
+                                const itemName = typeof item === 'string' ? item : item.name;
+                                const itemPath = typeof item === 'string'
+                                  ? (section.path || `${link.path}#${item.toLowerCase().replace(/\s+/g, '-')}`)
+                                  : item.path;
+                                return (
+                                  <li key={itemName}>
+                                    <Link
+                                      to={itemPath}
+                                      className="text-[14px] text-medical-navy/60 hover:text-medical-royal transition-all font-medium flex items-center gap-3 group"
+                                    >
+                                      <div className="w-2 h-2 rounded-full bg-medical-royal/30 group-hover:bg-medical-royal group-hover:scale-125 transition-all" />
+                                      {itemName}
+                                    </Link>
+                                  </li>
+                                );
+                              })}
+                            </ul>
+                          </div>
+                        )))}
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </div>
+              ))}
             </div>
-            
-            {/* CTA Buttons */}
-            <div className="flex items-center shrink-0">
-              <Link to="/appointment" className="btn-primary whitespace-nowrap !px-5 !py-2.5 !text-[13px]">
-                <Calendar size={16} />
-                Book Consult
-              </Link>
-            </div>
+          </div>
+
+          {/* Button */}
+          <div className="hidden lg:flex items-center shrink-0">
+            <Link to="/appointment" className="btn-primary whitespace-nowrap !px-3.5 !py-2 !text-[12px] lg:!text-[13px] xl:!text-[14px] !rounded-lg">
+              <Calendar size={14} />
+              Book Consult
+            </Link>
           </div>
 
           {/* Mobile Menu Toggle */}
           <button 
-            className="lg:hidden p-2 text-white transition-colors"
+            className="lg:hidden ml-auto p-2 text-medical-navy transition-colors"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
           >
             {isMobileMenuOpen ? <X size={28} /> : <Menu size={28} />}
@@ -188,29 +195,28 @@ const Navbar = () => {
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
-            className="fixed inset-0 bg-medical-navy z-[60] lg:hidden flex flex-col p-8 overflow-y-auto"
+            className="fixed inset-0 bg-white z-[60] lg:hidden flex flex-col p-8 overflow-y-auto"
           >
             <div className="flex justify-between items-center mb-16">
               <Link to="/" className="flex items-center gap-3">
-                <div className="bg-white px-2 py-1 rounded-lg flex items-center justify-center">
+                <div className="bg-medical-bg px-2 py-1 rounded-lg flex items-center justify-center">
                   <img src={fullLogo} alt="Bhargava Medical & Trauma Center" className="h-10 sm:h-12 w-auto object-contain" />
                 </div>
-                <span className="font-serif font-bold text-2xl text-white">BMTC</span>
               </Link>
-              <button onClick={() => setIsMobileMenuOpen(false)} className="p-2 text-white">
+              <button onClick={() => setIsMobileMenuOpen(false)} className="p-2 text-medical-navy">
                 <X size={32} />
               </button>
             </div>
             
-            <div className="flex flex-col gap-8">
+            <div className="flex flex-col gap-6">
               {navLinks.map((link) => (
-                <div key={link.name} className="flex flex-col gap-4">
+                <div key={link.name} className="flex flex-col gap-3">
                   <div className="flex items-center justify-between">
                     <Link 
                       to={link.path} 
                       className={cn(
-                        "text-3xl font-serif font-bold transition-colors",
-                        location.pathname === link.path ? "text-medical-gold" : "text-white"
+                        "text-xl font-semibold transition-colors",
+                        location.pathname === link.path ? "text-medical-royal" : "text-medical-navy hover:text-medical-royal"
                       )}
                       onClick={() => !link.megaMenu && setIsMobileMenuOpen(false)}
                     >
@@ -219,11 +225,11 @@ const Navbar = () => {
                     {link.megaMenu && (
                       <button 
                         onClick={() => setExpandedMobileMenu(expandedMobileMenu === link.name ? null : link.name)}
-                        className="p-2 text-white/70 hover:text-white"
+                        className="p-1 text-medical-navy/50 hover:text-medical-navy"
                       >
                         <ChevronDown 
-                          size={28} 
-                          className={cn("transition-transform duration-300", expandedMobileMenu === link.name ? "rotate-180 text-medical-gold" : "")} 
+                          size={22} 
+                          className={cn("transition-transform duration-300", expandedMobileMenu === link.name ? "rotate-180 text-medical-royal" : "")} 
                         />
                       </button>
                     )}
@@ -235,23 +241,29 @@ const Navbar = () => {
                         initial={{ opacity: 0, height: 0 }}
                         animate={{ opacity: 1, height: 'auto' }}
                         exit={{ opacity: 0, height: 0 }}
-                        className="flex flex-col gap-6 pl-4 border-l-2 border-white/10 overflow-hidden"
+                        className="flex flex-col gap-4 pl-4 border-l-2 border-medical-border overflow-hidden"
                       >
                         {link.megaMenu.map((section) => (
-                          <div key={section.title} className="flex flex-col gap-3 py-2">
-                            <span className="text-medical-gold text-sm font-bold uppercase tracking-wider">{section.title}</span>
-                            <div className="flex flex-col gap-3">
-                              {section.items.map((item) => (
-                                <Link 
-                                  key={item}
-                                  to={section.path || `${link.path}#${item.toLowerCase().replace(/\s+/g, '-')}`}
-                                  onClick={() => setIsMobileMenuOpen(false)}
-                                  className="text-lg text-white/80 hover:text-white transition-colors flex items-center gap-2"
-                                >
-                                  <div className="w-1.5 h-1.5 rounded-full bg-medical-gold/50" />
-                                  {item}
-                                </Link>
-                              ))}
+                          <div key={section.title} className="flex flex-col gap-2 py-1">
+                            <span className="text-medical-royal font-serif font-semibold text-sm tracking-tight">{section.title}</span>
+                            <div className="flex flex-col gap-2">
+                              {section.items.map((item) => {
+                                const itemName = typeof item === 'string' ? item : item.name;
+                                const itemPath = typeof item === 'string'
+                                  ? (section.path || `${link.path}#${item.toLowerCase().replace(/\s+/g, '-')}`)
+                                  : item.path;
+                                return (
+                                  <Link 
+                                    key={itemName}
+                                    to={itemPath}
+                                    onClick={() => setIsMobileMenuOpen(false)}
+                                    className="text-base text-medical-navy/70 hover:text-medical-royal transition-colors flex items-center gap-2"
+                                  >
+                                    <div className="w-1.5 h-1.5 rounded-full bg-medical-royal/30" />
+                                    {itemName}
+                                  </Link>
+                                );
+                              })}
                             </div>
                           </div>
                         ))}
@@ -260,18 +272,18 @@ const Navbar = () => {
                   </AnimatePresence>
                 </div>
               ))}
-              <div className="mt-8 space-y-4 pb-8">
+              <div className="mt-6 space-y-3 pb-8">
                 <Link 
                   to="/appointment" 
-                  className="btn-primary w-full py-5 text-lg"
+                  className="btn-primary w-full py-4 text-base"
                 >
                   Book Appointment
                 </Link>
                 <Link 
                   to="tel:+917309038872" 
-                  className="btn-outline w-full py-5 text-lg flex items-center justify-center gap-3"
+                  className="btn-outline w-full py-4 text-base flex items-center justify-center gap-3"
                 >
-                  <Phone size={20} /> Emergency Call
+                  <Phone size={18} /> Emergency Call
                 </Link>
               </div>
             </div>

@@ -209,16 +209,16 @@ const Doctors = () => {
 
       <div className="relative z-10">
         {/* Header */}
-        <section className="py-24 relative overflow-hidden bg-gradient-to-r from-[#071B34] via-cyan-600 to-cyan-400">
+        <section className="py-24 relative overflow-hidden bg-gradient-to-br from-[#071B34] via-cyan-800 to-cyan-900">
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(212,169,95,0.08),transparent_40%)]" />
           <div className="section-container relative z-10 text-center">
-            <span className="text-medical-gold uppercase tracking-[0.3em] font-bold text-sm mb-4 block">Clinical Experts</span>
+            <span className="text-white uppercase tracking-[0.3em] font-bold text-sm mb-4 block">Clinical Experts</span>
             <motion.h1 
               initial={{ y: 20, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
               className="text-4xl sm:text-5xl md:text-7xl font-serif font-bold text-white mb-8 leading-tight tracking-tight"
             >
-              Our Medical <span className="text-medical-gold">Team</span>
+              Our Medical <span className="text-white">Team</span>
             </motion.h1>
             <p className="text-white/80 text-xl font-medium max-w-3xl mx-auto leading-relaxed">
               Meet our distinguished panel of specialists dedicated to providing world-class healthcare with a compassionate touch.
@@ -293,20 +293,20 @@ const Doctors = () => {
                     className="premium-card p-12 flex flex-col h-full group bg-white border-medical-border"
                   >
                     <div className="mb-10">
-                      <div className="w-20 h-20 rounded-[2rem] bg-medical-bg flex items-center justify-center text-medical-gold mb-10 group-hover:bg-medical-royal group-hover:text-white group-hover:shadow-sm transition-all duration-500 border border-medical-border">
+                      <div className="w-20 h-20 rounded-[2rem] bg-medical-bg flex items-center justify-center text-medical-royal mb-10 group-hover:bg-medical-royal group-hover:text-white group-hover:shadow-sm transition-all duration-500 border border-medical-border">
                         <Award size={40} />
                       </div>
-                      <h3 className="text-3xl font-serif font-bold text-medical-navy mb-3 group-hover:text-medical-royal transition-colors">
+                      <h3 className="text-3xl font-serif font-bold text-medical-navy mb-3 group-hover:text-white transition-colors">
                         {doc.name}
                       </h3>
-                      <p className="text-medical-gold font-bold text-xs uppercase tracking-[0.3em]">
+                      <p className="text-medical-royal font-bold text-xs uppercase tracking-[0.3em]">
                         {doc.specialty}
                       </p>
                     </div>
 
                     <div className="space-y-8 mb-12 flex-grow">
                       <div className="flex items-start gap-5 text-[15px] text-medical-muted">
-                        <GraduationCap size={24} className="text-medical-gold shrink-0" />
+                        <GraduationCap size={24} className="text-medical-royal shrink-0" />
                         <span className="font-bold tracking-tight text-medical-navy">{doc.qualifications}</span>
                       </div>
                       <div className="p-8 rounded-3xl bg-medical-bg border border-medical-border group-hover:border-medical-royal/20 transition-colors">
@@ -333,7 +333,7 @@ const Doctors = () => {
               <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_0%,rgba(212,169,95,0.1),transparent_60%)]" />
               
               <div className="relative z-10 max-w-4xl mx-auto">
-                <h2 className="text-5xl md:text-8xl font-serif font-bold text-white mb-10 leading-tight tracking-tight">Expertise You Can <br /><span className="text-medical-gold">Trust</span></h2>
+                <h2 className="text-5xl md:text-8xl font-serif font-bold text-white mb-10 leading-tight tracking-tight">Expertise You Can <br /><span className="text-white">Trust</span></h2>
                 <p className="text-white/80 text-xl font-medium mb-16 max-w-2xl mx-auto leading-relaxed">
                   Our specialists bring decades of experience and a passion for healing to every patient they serve.
                 </p>

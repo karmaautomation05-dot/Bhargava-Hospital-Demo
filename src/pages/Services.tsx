@@ -4,7 +4,8 @@ import { motion, AnimatePresence } from 'framer-motion';
 import {
   HeartPulse, Baby, Bone, Siren, Microscope,
   CheckCircle2, Stethoscope, Activity, Brain, Droplets,
-  ChevronRight, Calendar, Pill, Zap, Users, Truck
+  ChevronRight, Calendar, Pill, Zap, Users, Truck,
+  Heart, Scissors, Crosshair, ClipboardCheck
 } from 'lucide-react';
 import { Link, useLocation } from 'react-router-dom';
 
@@ -15,68 +16,84 @@ import bmtc7 from '../assets/images/hospital/bmtc7.png';
 
 const OPD_SERVICES = [
   {
-    title: "Gynae & Obstetrics",
-    booking: true,
-    icon: Baby,
-    description: "Specialized care for female reproductive health and pregnancy.",
-    details: "Dr. Priyanka Bhargava specializes in obstetrics (pregnancy and delivery) and gynecology (female reproductive system). We handle high-risk pregnancies, infertility treatments, and various surgical procedures.",
-    features: ["Cesarean sections", "Instrumental deliveries", "Hysterectomy", "Ovarian cysts & Fibroids", "Pelvic ultrasounds", "Infertility counseling"]
-  },
-  {
-    title: "Orthopaedics",
+    title: "Joint Replacement",
     booking: true,
     icon: Bone,
-    description: "Comprehensive care for bones, joints, and musculoskeletal system.",
-    details: "Our department treats fractures, dislocations, ligament tears, arthritis, and growth abnormalities. We focus on diagnosis, treatment, rehabilitation, and prevention.",
-    features: ["Fracture management", "Torn ligaments", "Arthritis & Osteoporosis", "Bone tumors", "Sports injuries", "Physical therapy"]
+    description: "Advanced knee, hip, and shoulder replacement surgeries using modern techniques to restore mobility, reduce pain, and improve quality of life.",
+    details: "Our joint replacement program offers comprehensive surgical solutions for damaged or arthritic joints. Using advanced techniques and high-quality implants, we help patients regain pain-free movement and return to an active lifestyle.",
+    features: ["Total Knee Replacement", "Total Hip Replacement", "Shoulder Replacement", "Minimally Invasive Techniques", "Robotic-Assisted Surgery", "Post-Surgical Rehabilitation"]
   },
   {
-    title: "Pediatrics",
-    booking: true,
-    icon: Users,
-    description: "Medical care for infants, children, and adolescents.",
-    details: "Aiming to reduce infant mortality and promote healthy lifestyles. We treat infections, genetic conditions, and manage developmental or behavioral problems.",
-    features: ["Neonatal care", "Infectious diseases", "Developmental delays", "Behavioral problems", "Social stresses", "Mental health"]
-  },
-  {
-    title: "Neuro Physician",
-    booking: true,
-    icon: Brain,
-    description: "Treatment for diseases of the brain and nervous system.",
-    details: "Managing conditions like epilepsy, stroke, multiple sclerosis, and neuromuscular disorders. We handle symptoms like coordination problems and muscle weakness.",
-    features: ["Seizure disorders", "Stroke management", "Multiple sclerosis", "Meningitis", "Chronic headaches", "Neuromuscular issues"]
-  },
-  {
-    title: "Gastro Physician",
+    title: "Arthroscopy & Sports Injury",
     booking: true,
     icon: Activity,
-    description: "Specialized care for digestive system and liver diseases.",
-    details: "Investigating and treating conditions of the stomach, intestines, liver, gallbladder, and pancreas. Expertise in GI bleeding, cancer, and inflammatory bowel disease.",
-    features: ["GI Cancer screening", "Hepatitis management", "Crohn's disease", "Ulcerative colitis", "Jaundice treatment", "Gastroenteritis"]
+    description: "Minimally invasive arthroscopic procedures for ligament tears, meniscus injuries, sports trauma, and faster recovery with expert orthopedic care.",
+    details: "Our arthroscopy and sports medicine department specializes in diagnosing and treating sports-related injuries and joint disorders. We use minimally invasive techniques to ensure faster recovery and better outcomes for athletes and active individuals.",
+    features: ["ACL Reconstruction", "Meniscus Repair", "Rotator Cuff Repair", "Cartilage Restoration", "Shoulder Stabilization", "Sports Rehabilitation"]
   },
   {
-    title: "Heart Physician",
+    title: "Trauma & Emergency Care",
+    booking: false,
+    icon: Siren,
+    description: "24×7 emergency management for fractures, accident injuries, complex trauma, and orthopedic emergencies with rapid diagnosis and treatment.",
+    details: "Our 24/7 trauma center is equipped to handle all types of emergencies, from minor fractures to complex polytrauma cases. With a dedicated team of emergency physicians, orthopedic surgeons, and support staff, we provide rapid, life-saving care.",
+    features: ["Fracture Management", "Polytrauma Care", "Emergency Surgery", "Road Accident Injuries", "Workplace Trauma", "24/7 Emergency Response"]
+  },
+  {
+    title: "High-Risk Pregnancy Care",
+    booking: true,
+    icon: Baby,
+    description: "Specialized care for high-risk pregnancies with advanced maternal monitoring, fetal assessment, and personalized treatment for safer outcomes.",
+    details: "Our high-risk pregnancy program provides comprehensive care for expectant mothers with complex medical conditions. We offer advanced fetal monitoring, specialized maternal care, and a multidisciplinary approach to ensure the safest possible outcomes.",
+    features: ["Advanced Fetal Monitoring", "Maternal ICU Care", "Preterm Labor Management", "Gestational Diabetes Care", "Preeclampsia Management", "Neonatal Support"]
+  },
+  {
+    title: "Advanced Infertility Treatment",
+    booking: true,
+    icon: Heart,
+    description: "Comprehensive fertility evaluation and personalized infertility treatments designed to help couples achieve successful parenthood.",
+    details: "Our fertility center offers a full spectrum of infertility evaluation and treatment options. From initial diagnostic workup to advanced assisted reproductive technologies, we provide compassionate, personalized care for couples on their journey to parenthood.",
+    features: ["Fertility Evaluation", "Ovulation Induction", "IUI Treatment", "Hormonal Therapy", "Laparoscopic Fertility Surgery", "Fertility Counseling"]
+  },
+  {
+    title: "Laparoscopic Surgery",
+    booking: true,
+    icon: Crosshair,
+    description: "Advanced minimally invasive surgical procedures offering smaller incisions, reduced pain, faster recovery, and shorter hospital stays.",
+    details: "Our laparoscopic surgery department specializes in minimally invasive procedures across multiple specialties. Using advanced camera systems and precision instruments, we perform complex surgeries through tiny incisions, resulting in less pain and quicker recovery.",
+    features: ["Laparoscopic Cholecystectomy", "Hernia Repair", "Appendectomy", "Gynecological Laparoscopy", "Diagnostic Laparoscopy", "Fast Track Recovery"]
+  },
+  {
+    title: "General Surgery",
+    booking: true,
+    icon: Scissors,
+    description: "Expert surgical management for hernia, gallbladder, appendix, breast, thyroid, and other general surgical conditions.",
+    details: "Our general surgery department provides comprehensive surgical care for a wide range of conditions. From routine procedures to complex surgeries, our experienced surgeons utilize both traditional and minimally invasive approaches for optimal outcomes.",
+    features: ["Hernia Surgery", "Gallbladder Surgery", "Appendix Surgery", "Breast Surgery", "Thyroid Surgery", "Minor Surgical Procedures"]
+  },
+  {
+    title: "Advanced Physician Management",
+    booking: true,
+    icon: ClipboardCheck,
+    description: "Comprehensive diagnosis and long-term management of diabetes, hypertension, thyroid disorders, infections, and other chronic medical conditions.",
+    details: "Our internal medicine department offers expert management of chronic medical conditions through comprehensive evaluation, evidence-based treatment plans, and regular follow-up care. We focus on preventive care and long-term health optimization.",
+    features: ["Diabetes Management", "Hypertension Control", "Thyroid Disorder Care", "Infection Treatment", "Preventive Health Checkups", "Chronic Disease Monitoring"]
+  },
+  {
+    title: "Neonatal & Pediatric Care",
     booking: true,
     icon: HeartPulse,
-    description: "Comprehensive cardiac care and heart disease prevention.",
-    details: "Diagnosis and treatment of heart attacks, coronary artery disease, heart failure, and arrhythmias. We focus on long-term management and prevention.",
-    features: ["Heart attack care", "Coronary disease", "Arrythmias", "Valve problems", "Heart failure", "Preventive checkups"]
+    description: "Dedicated healthcare for newborns, infants, and children, including newborn care, vaccinations, growth monitoring, and pediatric consultations.",
+    details: "Our pediatric department provides comprehensive healthcare for children from birth through adolescence. We offer preventive care, treatment of acute and chronic conditions, and specialized neonatal care for newborns requiring medical attention.",
+    features: ["Newborn Care", "Childhood Vaccinations", "Growth & Development Monitoring", "Pediatric Consultations", "Nutritional Guidance", "Pediatric Emergency Care"]
   },
   {
-    title: "Diabetic Physician",
+    title: "Advanced Diagnostic Services",
     booking: true,
-    icon: Stethoscope,
-    description: "Expert management of diabetes and hormonal disorders.",
-    details: "Specialized endocrinology care for diabetes, thyroid issues, and hormonal imbalances. We focus on insulin management and long-term health.",
-    features: ["Type 1 & 2 Diabetes", "Insulin management", "Thyroid disorders", "Metabolic health", "Hormonal screening", "Fatigue management"]
-  },
-  {
-    title: "Chest Physician",
-    booking: true,
-    icon: Pill,
-    description: "Treatment for lung diseases and respiratory disorders.",
-    details: "Expert care for pneumonia, asthma, tuberculosis, and respiratory infections. We help manage breathing problems and chronic lung conditions.",
-    features: ["Asthma & Allergy", "Tuberculosis care", "Pulmonary fibrosis", "Bronchitis", "Respiratory infections", "Spirometry"]
+    icon: Microscope,
+    description: "Comprehensive diagnostic facilities including laboratory investigations, digital imaging, ultrasound, ECG, and other essential diagnostic services for accurate and timely clinical decision-making.",
+    details: "Our diagnostic services department offers a full spectrum of laboratory and imaging services to support accurate diagnosis and effective treatment planning. With state-of-the-art equipment and experienced technicians, we ensure rapid turnaround times and reliable results.",
+    features: ["Fully Automated Lab", "Digital X-Ray & Ultrasound", "2D Echo & ECG", "Preventive Health Packages", "NABH Quality Standards", "Rapid Results Turnaround"]
   }
 ];
 
@@ -125,27 +142,27 @@ const Services = () => {
       </Helmet>
 
       {/* Cinematic Hero */}
-      <section className="py-24 relative overflow-hidden bg-gradient-to-r from-[#071B34] via-cyan-600 to-cyan-400">
+      <section className="py-24 relative overflow-hidden bg-gradient-to-br from-[#071B34] via-cyan-800 to-cyan-900">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(212,169,95,0.08),transparent_40%)]" />
         <div className="section-container relative z-10 text-center">
           <motion.div
             initial={{ y: 20, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
           >
-            <span className="text-medical-gold uppercase tracking-[0.3em] font-bold text-sm mb-4 block">Medical Excellence</span>
+            <span className="text-white uppercase tracking-[0.3em] font-bold text-sm mb-4 block">Medical Excellence</span>
             <h1 className="text-4xl sm:text-5xl md:text-7xl font-serif font-bold text-white mb-8">
-              Our Healthcare <span className="text-medical-gold">Services</span>
+              Our Healthcare <span className="text-white">Services</span>
             </h1>
             <div className="flex flex-wrap justify-center gap-2 sm:gap-4 mt-12">
               <button
                 onClick={() => setActiveTab('opd')}
-                className={`px-6 py-3 sm:px-8 sm:py-4 text-sm sm:text-base rounded-full font-bold transition-all ${activeTab === 'opd' ? 'bg-medical-gold text-medical-navy shadow-luxury' : 'bg-white/10 text-white hover:bg-white/20'}`}
+                className={`px-6 py-3 sm:px-8 sm:py-4 text-sm sm:text-base rounded-full font-bold transition-all ${activeTab === 'opd' ? 'bg-medical-royal text-medical-navy shadow-luxury' : 'bg-white/10 text-white hover:bg-white/20'}`}
               >
                 OPD Services
               </button>
               <button
                 onClick={() => setActiveTab('ipd')}
-                className={`px-6 py-3 sm:px-8 sm:py-4 text-sm sm:text-base rounded-full font-bold transition-all ${activeTab === 'ipd' ? 'bg-medical-gold text-medical-navy shadow-luxury' : 'bg-white/10 text-white hover:bg-white/20'}`}
+                className={`px-6 py-3 sm:px-8 sm:py-4 text-sm sm:text-base rounded-full font-bold transition-all ${activeTab === 'ipd' ? 'bg-medical-royal text-medical-navy shadow-luxury' : 'bg-white/10 text-white hover:bg-white/20'}`}
               >
                 IPD Services
               </button>
@@ -193,7 +210,7 @@ const Services = () => {
                             <td className="py-6 px-4 font-bold text-medical-navy">{doc.dept}</td>
                             <td className="py-6 px-4 text-medical-royal font-medium">{doc.name}</td>
                             <td className="py-6 px-4 text-medical-muted">{doc.time}</td>
-                            <td className="py-6 px-4 font-bold text-medical-gold">{doc.days}</td>
+                            <td className="py-6 px-4 font-bold text-medical-royal">{doc.days}</td>
                           </tr>
                         ))}
                       </tbody>
@@ -206,20 +223,21 @@ const Services = () => {
                   {OPD_SERVICES.map((service, idx) => (
                     <motion.div
                       key={service.title}
+                      id={service.title.toLowerCase().replace(/\s+&\s+/g, '-').replace(/\s+/g, '-')}
                       initial={{ opacity: 0, y: 20 }}
                       whileInView={{ opacity: 1, y: 0 }}
                       viewport={{ once: true }}
                       transition={{ delay: idx * 0.1 }}
-                      className="bg-white rounded-[2.5rem] p-10 shadow-luxury border border-medical-border hover:border-medical-gold transition-all group"
+                      className="bg-white rounded-[2.5rem] p-10 shadow-luxury border border-medical-border hover:border-medical-royal transition-all group"
                     >
                       <div className="flex items-start gap-6 mb-8">
-                        <div className="w-16 h-16 rounded-2xl bg-medical-bg flex items-center justify-center text-medical-gold group-hover:bg-medical-gold group-hover:text-white transition-all shrink-0">
+                        <div className="w-16 h-16 rounded-2xl bg-medical-bg flex items-center justify-center text-medical-royal group-hover:bg-medical-royal group-hover:text-white transition-all shrink-0">
                           <service.icon size={32} />
                         </div>
                         <div>
                           <h3 className="text-2xl font-serif font-bold text-medical-navy mb-2">{service.title}</h3>
                           {service.booking && (
-                            <span className="text-[10px] font-bold uppercase tracking-widest text-medical-gold bg-medical-gold/10 px-3 py-1 rounded-full">
+                            <span className="text-[10px] font-bold uppercase tracking-widest text-medical-royal bg-medical-royal/10 px-3 py-1 rounded-full">
                               Online Booking Available
                             </span>
                           )}
@@ -231,7 +249,7 @@ const Services = () => {
                       <div className="grid grid-cols-2 gap-4">
                         {service.features.map((feature, fidx) => (
                           <div key={fidx} className="flex items-center gap-3 text-sm text-medical-navy/80 font-medium">
-                            <CheckCircle2 size={16} className="text-medical-gold shrink-0" />
+                            <CheckCircle2 size={16} className="text-medical-royal shrink-0" />
                             {feature}
                           </div>
                         ))}
@@ -250,7 +268,7 @@ const Services = () => {
                 <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
                   {/* IPD Intro Card */}
                   <div className="lg:col-span-1 bg-medical-navy text-white rounded-[3rem] p-12 relative overflow-hidden flex flex-col justify-between">
-                    <div className="absolute top-0 right-0 w-64 h-64 bg-medical-gold/10 blur-[80px] rounded-full -mr-32 -mt-32" />
+                    <div className="absolute top-0 right-0 w-64 h-64 bg-medical-royal/10 blur-[80px] rounded-full -mr-32 -mt-32" />
                     <div className="relative z-10">
                       <h2 className="text-4xl font-serif font-bold mb-6 leading-tight">Superior <br />In-Patient <br />Care</h2>
                       <p className="text-white/70 leading-relaxed mb-12">
@@ -274,7 +292,7 @@ const Services = () => {
                           <service.icon size={28} />
                         </div>
                         <h4 className="text-lg font-bold text-medical-navy">{service.title}</h4>
-                        <ChevronRight className="ml-auto text-medical-border group-hover:text-medical-gold transition-colors" />
+                        <ChevronRight className="ml-auto text-medical-border group-hover:text-medical-royal transition-colors" />
                       </div>
                     ))}
                   </div>
@@ -283,7 +301,7 @@ const Services = () => {
                 {/* Facilities Grid */}
                 <div className="mt-24 grid grid-cols-1 md:grid-cols-3 gap-8">
                   <div className="bg-medical-warmWhite p-12 rounded-[2.5rem] border border-medical-border text-center">
-                    <Microscope size={48} className="text-medical-gold mx-auto mb-8" />
+                    <Microscope size={48} className="text-medical-royal mx-auto mb-8" />
                     <h3 className="text-2xl font-serif font-bold text-medical-navy mb-4">Diagnostic Services</h3>
                     <p className="text-medical-muted mb-8">2D Echo, Spirometry, Ultrasound, X-Ray and fully automated lab.</p>
                     <div className="flex flex-wrap justify-center gap-2">
@@ -295,7 +313,7 @@ const Services = () => {
                     </div>
                   </div>
                   <div className="bg-medical-warmWhite p-12 rounded-[2.5rem] border border-medical-border text-center">
-                    <Stethoscope size={48} className="text-medical-gold mx-auto mb-8" />
+                    <Stethoscope size={48} className="text-medical-royal mx-auto mb-8" />
                     <h3 className="text-2xl font-serif font-bold text-medical-navy mb-4">Allied Professions</h3>
                     <p className="text-medical-muted mb-8">Specialized support through expert dietetics and physiotherapy.</p>
                     <div className="flex flex-wrap justify-center gap-2">
@@ -307,7 +325,7 @@ const Services = () => {
                     </div>
                   </div>
                   <div className="bg-medical-warmWhite p-12 rounded-[2.5rem] border border-medical-border text-center">
-                    <Truck size={48} className="text-medical-gold mx-auto mb-8" />
+                    <Truck size={48} className="text-medical-royal mx-auto mb-8" />
                     <h3 className="text-2xl font-serif font-bold text-medical-navy mb-4">Support Services</h3>
                     <p className="text-medical-muted mb-8">24/7 Advanced ambulance services for emergency transport.</p>
                     <div className="flex flex-wrap justify-center gap-2">

@@ -32,16 +32,16 @@ const Contact = () => {
 
       <div className="relative z-10">
         {/* Header */}
-        <section className="py-24 relative overflow-hidden bg-gradient-to-r from-[#071B34] via-cyan-600 to-cyan-400">
+        <section className="py-24 relative overflow-hidden bg-gradient-to-br from-[#071B34] via-cyan-800 to-cyan-900">
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(212,169,95,0.08),transparent_40%)]" />
           <div className="section-container relative z-10 text-center">
-            <span className="text-medical-gold uppercase tracking-[0.3em] font-bold text-sm mb-4 block">24/7 Support</span>
+            <span className="text-white uppercase tracking-[0.3em] font-bold text-sm mb-4 block">24/7 Support</span>
             <motion.h1
               initial={{ y: 20, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
               className="text-4xl sm:text-5xl md:text-7xl font-serif font-bold text-white mb-8 leading-tight tracking-tight"
             >
-              Get in <span className="text-medical-gold">Touch</span>
+              Get in <span className="text-white">Touch</span>
             </motion.h1>
             <p className="text-white/80 text-xl font-medium max-w-2xl mx-auto leading-relaxed">
               We are here to assist you with any medical inquiries, appointments, or emergency support. Reach out to our dedicated team.
@@ -96,7 +96,7 @@ const Contact = () => {
                   whileHover={{ y: -5 }}
                   className="premium-card p-10 bg-white border border-medical-border"
                 >
-                  <div className="w-16 h-16 rounded-2xl bg-medical-bg flex items-center justify-center text-medical-gold mb-8 shadow-sm border border-medical-border">
+                  <div className="w-16 h-16 rounded-2xl bg-medical-bg flex items-center justify-center text-medical-royal mb-8 shadow-sm border border-medical-border">
                     <Phone size={28} />
                   </div>
                   <h4 className="text-xl font-bold text-medical-navy mb-4">Emergency Lines</h4>
@@ -108,7 +108,7 @@ const Contact = () => {
                   whileHover={{ y: -5 }}
                   className="premium-card p-10 bg-white border border-medical-border"
                 >
-                  <div className="w-16 h-16 rounded-2xl bg-medical-bg flex items-center justify-center text-medical-gold mb-8 shadow-sm border border-medical-border">
+                  <div className="w-16 h-16 rounded-2xl bg-medical-bg flex items-center justify-center text-medical-royal mb-8 shadow-sm border border-medical-border">
                     <Mail size={28} />
                   </div>
                   <h4 className="text-xl font-bold text-medical-navy mb-4">Email Desk</h4>
@@ -119,7 +119,7 @@ const Contact = () => {
                   whileHover={{ y: -5 }}
                   className="premium-card p-10 bg-white border border-medical-border"
                 >
-                  <div className="w-16 h-16 rounded-2xl bg-medical-bg flex items-center justify-center text-medical-gold mb-8 shadow-sm border border-medical-border">
+                  <div className="w-16 h-16 rounded-2xl bg-medical-bg flex items-center justify-center text-medical-royal mb-8 shadow-sm border border-medical-border">
                     <Clock size={28} />
                   </div>
                   <h4 className="text-xl font-bold text-medical-navy mb-4">Working Hours</h4>
@@ -160,7 +160,7 @@ const Contact = () => {
               {/* Bottom part: Address Details */}
               <div className="w-full p-8 md:p-12 bg-white flex flex-col md:flex-row items-center justify-between gap-6 border-t border-medical-border">
                 <div className="flex items-center gap-6 text-center md:text-left w-full md:w-auto flex-col md:flex-row">
-                  <div className="w-16 h-16 rounded-2xl bg-medical-bg flex items-center justify-center text-medical-gold shadow-sm border border-medical-border shrink-0">
+                  <div className="w-16 h-16 rounded-2xl bg-medical-bg flex items-center justify-center text-medical-royal shadow-sm border border-medical-border shrink-0">
                     <MapPin size={28} />
                   </div>
                   <div>

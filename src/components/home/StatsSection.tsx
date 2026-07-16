@@ -14,7 +14,7 @@ const StatsSection = () => {
       <div className="section-container">
         <div className="bg-white border border-medical-border rounded-[3rem] p-10 md:p-8 shadow-sm overflow-hidden relative group">
           {/* Subtle animated glow */}
-          <div className="absolute inset-0 bg-gradient-to-r from-medical-royal/5 via-transparent to-medical-gold/5 opacity-0 group-hover:opacity-100 transition-opacity duration-1000" />
+          <div className="absolute inset-0 bg-gradient-to-r from-medical-royal/5 via-transparent to-medical-royal/5 opacity-0 group-hover:opacity-100 transition-opacity duration-1000" />
 
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-12 relative z-10">
             {stats.map((stat, index) => (
@@ -27,7 +27,7 @@ const StatsSection = () => {
                 className="text-center relative group/stat"
               >
                 <div className="flex justify-center mb-6">
-                  <div className="w-14 h-14 rounded-2xl bg-medical-bg flex items-center justify-center text-medical-gold group-hover/stat:text-white group-hover/stat:bg-medical-royal transition-all duration-500 shadow-sm border border-medical-border">
+                  <div className="w-14 h-14 rounded-2xl bg-medical-bg flex items-center justify-center text-medical-royal group-hover/stat:text-white group-hover/stat:bg-medical-royal transition-all duration-500 shadow-sm border border-medical-border">
                     <stat.icon size={28} />
                   </div>
                 </div>
