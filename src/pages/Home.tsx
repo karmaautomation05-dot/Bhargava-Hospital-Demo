@@ -19,6 +19,7 @@ import traumaImg from '../assets/images/hospital/trauma_response.png';
 import pharmacyImg from '../assets/images/hospital/pharmacy.png';
 import bmtc2Img from '../assets/images/hospital/bmtc2.png';
 import ambulanceImg from '../assets/images/hospital/ambulance.png';
+import nabhLogo from '../assets/nabh-logo.png';
 
 const FEATURED_DOCTORS = [
   {
@@ -282,6 +283,58 @@ const Home = () => {
               Explore Medical Facilities
               <ArrowRight size={22} />
             </Link>
+          </div>
+        </section>
+
+        {/* NABH Accreditation */}
+        <section className="py-24 bg-medical-navy relative overflow-hidden">
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_0%,rgba(212,169,95,0.08),transparent_60%)]" />
+          <div className="section-container relative z-10">
+            <div className="flex flex-col lg:flex-row items-center justify-between gap-12 max-w-5xl mx-auto">
+              {/* Badge */}
+              <div className="flex flex-col items-center shrink-0">
+                <div className="w-36 h-36 rounded-full bg-white/10 border-2 border-white/20 flex items-center justify-center mb-4 shadow-xl p-6">
+                  <img src={nabhLogo} alt="NABH Accredited" className="w-full h-full object-contain" />
+                </div>
+                <div className="flex items-center gap-2 mt-2">
+                  <div className="w-2 h-2 rounded-full bg-green-400 animate-pulse" />
+                  <span className="text-white/60 text-xs font-medium tracking-wider uppercase">Accredited</span>
+                </div>
+              </div>
+
+              {/* Text */}
+              <div className="text-center lg:text-left">
+                <span className="text-medical-royal uppercase tracking-[0.3em] font-bold text-sm mb-4 block">Our Certification</span>
+                <h2 className="text-4xl md:text-5xl font-serif font-bold text-white mb-6 leading-tight">
+                  NABH Accredited Hospital
+                </h2>
+                <p className="text-white/70 text-lg max-w-xl leading-relaxed">
+                  We are proud to be the <strong className="text-white">first hospital in South Kanpur</strong> to receive 
+                  NABH accreditation, a testament to our unwavering commitment to quality healthcare. 
+                  Accredited <strong className="text-white">since 2018</strong>.
+                </p>
+                <div className="flex flex-wrap items-center gap-8 mt-8 justify-center lg:justify-start">
+                  <div className="flex items-center gap-3">
+                    <div className="w-10 h-10 rounded-full bg-medical-royal/20 flex items-center justify-center">
+                      <span className="text-medical-royal font-bold text-sm">✓</span>
+                    </div>
+                    <span className="text-white/80 text-sm font-medium">14 Years in Service</span>
+                  </div>
+                  <div className="flex items-center gap-3">
+                    <div className="w-10 h-10 rounded-full bg-medical-royal/20 flex items-center justify-center">
+                      <span className="text-medical-royal font-bold text-sm">✓</span>
+                    </div>
+                    <span className="text-white/80 text-sm font-medium">Since 2018</span>
+                  </div>
+                  <div className="flex items-center gap-3">
+                    <div className="w-10 h-10 rounded-full bg-medical-royal/20 flex items-center justify-center">
+                      <span className="text-medical-royal font-bold text-sm">✓</span>
+                    </div>
+                    <span className="text-white/80 text-sm font-medium">First in South Kanpur</span>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </section>
 

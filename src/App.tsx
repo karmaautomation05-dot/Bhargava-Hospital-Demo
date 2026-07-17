@@ -20,6 +20,7 @@ const Gallery = lazy(() => import('./pages/Gallery'));
 const Testimonials = lazy(() => import('./pages/Testimonials'));
 const DoctorPriyanka = lazy(() => import('./pages/DoctorPriyanka'));
 const DoctorGaurav = lazy(() => import('./pages/DoctorGaurav'));
+const Specialists = lazy(() => import('./pages/Specialists'));
 
 const router = createBrowserRouter([
   {
@@ -40,6 +41,7 @@ const router = createBrowserRouter([
       { path: "news-events", element: <NewsEvents /> },
       { path: "gallery", element: <Gallery /> },
       { path: "testimonials", element: <Testimonials /> },
+      { path: "specialists", element: <Specialists /> },
       { path: "doctor/dr-priyanka-bhargava", element: <DoctorPriyanka /> },
       { path: "doctor/dr-gaurav-bhargava", element: <DoctorGaurav /> },
       { path: "*", element: <div className="pt-32 text-center h-screen">Page Coming Soon</div> },

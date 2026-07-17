@@ -3,6 +3,7 @@ import { FaFacebook, FaInstagram, FaLinkedin, FaWhatsapp } from 'react-icons/fa'
 import { Mail, Phone, MapPin } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import logo from '../../assets/logo/Hospital Logo.png';
+import nabhLogo from '../../assets/nabh-logo.png';
 
 const Footer = () => {
   return (
@@ -22,6 +23,16 @@ const Footer = () => {
             <p className="text-white/60 text-sm leading-relaxed font-medium">
               Leading the way in medical excellence and compassionate patient care. Bhargava Medical and Trauma Centre is dedicated to providing world-class health services to our community.
             </p>
+            {/* NABH Accreditation Badge */}
+            <div className="flex items-center gap-4 p-4 rounded-2xl bg-white/5 border border-white/10">
+              <div className="w-14 h-14 rounded-full bg-white/10 flex items-center justify-center shrink-0 border border-white/10 p-2.5">
+                <img src={nabhLogo} alt="NABH Accredited" className="w-full h-full object-contain" />
+              </div>
+              <div>
+                <p className="text-white text-xs font-bold tracking-wide">NABH Accredited</p>
+                <p className="text-white/50 text-[10px]">14 Years in Service · Since 2018</p>
+              </div>
+            </div>
             <div className="flex gap-4">
               {[
                 { Icon: FaFacebook, href: "https://www.facebook.com/bmtc.knp/" },
