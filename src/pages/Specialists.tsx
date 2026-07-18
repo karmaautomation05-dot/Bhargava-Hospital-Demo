@@ -1,7 +1,34 @@
 import { motion } from 'framer-motion';
 import { Helmet } from 'react-helmet-async';
-import { Calendar, Award, GraduationCap, ChevronRight, Star } from 'lucide-react';
+import { Calendar, Award, GraduationCap, ChevronRight, Star, Bone, Heart, Activity, Stethoscope, Baby, Scissors, FlaskConical, Ear, Brain, Eye, Dna, Spline, Utensils, Dumbbell, Smile, Radio, FlaskRound, User } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import drPriyanka from '../assets/images/doctors/dr priyanka.jpg';
+import drGaurav from '../assets/images/doctors/Gaurav Bhargava.png';
+
+const deptIcons: Record<string, React.ElementType> = {
+  Orthopedics: Bone,
+  'General Medicine': Stethoscope,
+  Gynaecology: Heart,
+  Cardiology: Activity,
+  'General Surgery': Scissors,
+  Peadiatrics: Baby,
+  'Peadiatric Surgeons': Baby,
+  Urology: FlaskConical,
+  'Chest Physician': Activity,
+  ENT: Ear,
+  Gastroentrology: Stethoscope,
+  Nephrology: FlaskConical,
+  Opthalmics: Eye,
+  'Onco-Surgery': Dna,
+  'Neuro Surgeons': Brain,
+  'Plastic Surgeon': Spline,
+  Anaesthesia: FlaskConical,
+  Psychiatrists: Smile,
+  Radiology: Radio,
+  Pathology: FlaskRound,
+  Dietetics: Utensils,
+  Physiotherapy: Dumbbell
+};
 
 interface Doctor {
   name: string;
@@ -9,6 +36,7 @@ interface Doctor {
   qualifications: string;
   achievements: string;
   department: string;
+  image?: string;
 }
 
 const featuredDoctors: Doctor[] = [
@@ -17,14 +45,16 @@ const featuredDoctors: Doctor[] = [
     specialty: "Obstetrics & Gynaecology",
     qualifications: "MBBS, MS (Obs & Gyn)",
     achievements: "She is one of the best gynaecologist in Kanpur. Known for her amazing specialization at this profession, she has been contributing a lot towards the health of all the female across the city and beyond.",
-    department: "Gynaecology"
+    department: "Gynaecology",
+    image: drPriyanka
   },
   {
     name: "Dr. Gaurav Bhargava",
     specialty: "Orthopaedist / Joint Replacement / Sports Injury",
     qualifications: "MBBS, MS (Ortho)",
     achievements: "He is the best known Orthopaedist in Kanpur. A well known knee replacement surgeon, he leaves no stone unturned in taking care of his patients.",
-    department: "Orthopedics"
+    department: "Orthopedics",
+    image: drGaurav
   },
   {
     name: "Dr. R.R. Bhargava",
@@ -117,10 +147,12 @@ const Specialists = () => {
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
-              {featuredDoctors.map((doc, idx) => (
+              {featuredDoctors.map((doc, idx) => {
+                const DeptIcon = deptIcons[doc.department] || Award;
+                return (
                 <div
                   key={doc.name}
-                  className="bg-white rounded-3xl border-2 border-medical-royal/20 p-8 flex flex-col h-full group hover:shadow-xl hover:border-medical-royal/40 transition-all duration-500 relative overflow-hidden"
+                  className="bg-white rounded-3xl border-2 border-medical-royal/20 p-8 flex flex-col h-full group hover:shadow-xl hover:border-medical-royal/40 transition-all duration-500 relative overflow-hidden shadow-sm"
                 >
                   <div className="absolute top-0 right-0 w-24 h-24 bg-medical-royal/5 rounded-bl-[3rem]" />
                   <div className="absolute top-3 right-3">
@@ -128,9 +160,15 @@ const Specialists = () => {
                   </div>
 
                   <div className="mb-8">
-                    <div className="w-16 h-16 rounded-2xl bg-medical-royal/10 flex items-center justify-center text-medical-royal mb-6 group-hover:bg-medical-royal group-hover:text-white transition-all duration-500 border border-medical-royal/20">
-                      <Award size={32} />
-                    </div>
+                    <Link to={`/doctors#${doc.department.toLowerCase().replace(/\s+/g, '-')}`} className="block w-fit">
+                      <div className="w-32 h-32 rounded-full bg-medical-royal/10 flex items-center justify-center text-medical-royal mb-6 overflow-hidden border-2 border-medical-royal/20 hover:border-medical-royal transition-all duration-500 cursor-pointer">
+                        {doc.image ? (
+                          <img src={doc.image} alt={doc.name} className="w-full h-full object-cover" style={doc.name === "Dr. Priyanka Bhargava" ? { objectPosition: 'center 20%' } : undefined} />
+                        ) : (
+                          <User size={48} />
+                        )}
+                      </div>
+                    </Link>
                     <h3 className="text-2xl font-serif font-bold text-medical-navy mb-2">
                       {doc.name}
                     </h3>
@@ -138,9 +176,9 @@ const Specialists = () => {
                       {doc.specialty}
                     </p>
                     <div className="mt-2">
-                      <span className="inline-block px-3 py-1 rounded-full bg-medical-royal/5 text-[10px] font-bold text-medical-royal uppercase tracking-wider border border-medical-royal/10">
+                      <Link to={`/doctors#${doc.department.toLowerCase().replace(/\s+/g, '-')}`} className="inline-block px-3 py-1 rounded-full bg-medical-royal/5 text-[10px] font-bold text-medical-royal uppercase tracking-wider border border-medical-royal/10 hover:bg-medical-royal hover:text-white transition-all duration-300">
                         {doc.department}
-                      </span>
+                      </Link>
                     </div>
                   </div>
 
@@ -156,11 +194,12 @@ const Specialists = () => {
                     </div>
                   </div>
 
-                  <Link to="/appointment" className="inline-flex items-center gap-2 text-medical-royal font-bold text-xs uppercase tracking-[0.25em] group/btn">
+                  <Link to="/appointment" className="inline-flex items-center gap-2 text-medical-royal font-bold text-xs uppercase tracking-[0.25em] border-2 border-medical-royal/30 rounded-xl px-6 py-3 hover:bg-medical-royal hover:text-white hover:border-medical-royal transition-all duration-300 group/btn w-fit">
                     Consult Specialist <ChevronRight size={18} className="group-hover/btn:translate-x-1.5 transition-transform" />
                   </Link>
                 </div>
-              ))}
+                );
+              })}
             </div>
           </div>
         </section>
@@ -176,25 +215,29 @@ const Specialists = () => {
               </p>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-              {otherDoctors.map((doc) => (
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {otherDoctors.map((doc) => {
+                const DeptIcon = deptIcons[doc.department] || Award;
+                return (
                 <div
                   key={doc.name}
-                  className="bg-white rounded-2xl border border-medical-border/60 p-6 flex flex-col h-full group hover:shadow-md hover:border-medical-royal/20 transition-all duration-500"
+                  className="bg-white rounded-2xl border-2 border-medical-border p-6 flex flex-col h-full group hover:shadow-lg hover:border-medical-royal/30 transition-all duration-500 shadow-sm"
                 >
                   <div className="mb-6">
-                    <div className="w-12 h-12 rounded-xl bg-medical-bg flex items-center justify-center text-medical-royal mb-4 group-hover:bg-medical-royal group-hover:text-white transition-all duration-500 border border-medical-border">
-                      <Award size={24} />
-                    </div>
+                    <Link to={`/doctors#${doc.department.toLowerCase().replace(/\s+/g, '-')}`} className="block w-fit">
+                      <div className="w-12 h-12 rounded-xl bg-medical-bg flex items-center justify-center text-medical-royal mb-4 hover:bg-medical-royal hover:text-white transition-all duration-500 border border-medical-border cursor-pointer">
+                        <DeptIcon size={24} />
+                      </div>
+                    </Link>
                     <h3 className="text-lg font-serif font-bold text-medical-navy mb-1">
                       {doc.name}
                     </h3>
                     <p className="text-medical-royal font-bold text-[10px] uppercase tracking-[0.2em] mb-2">
                       {doc.specialty}
                     </p>
-                    <span className="inline-block px-2.5 py-0.5 rounded-full bg-medical-royal/5 text-[9px] font-bold text-medical-royal uppercase tracking-wider border border-medical-royal/10">
+                    <Link to={`/doctors#${doc.department.toLowerCase().replace(/\s+/g, '-')}`} className="inline-block px-2.5 py-0.5 rounded-full bg-medical-royal/5 text-[9px] font-bold text-medical-royal uppercase tracking-wider border border-medical-royal/10 hover:bg-medical-royal hover:text-white transition-all duration-300">
                       {doc.department}
-                    </span>
+                    </Link>
                   </div>
 
                   <div className="space-y-4 mb-6 flex-grow">
@@ -209,11 +252,12 @@ const Specialists = () => {
                     </div>
                   </div>
 
-                  <Link to="/appointment" className="inline-flex items-center gap-2 text-medical-royal font-bold text-[11px] uppercase tracking-[0.2em] group/btn">
+                  <Link to="/appointment" className="inline-flex items-center gap-2 text-medical-royal font-bold text-[11px] uppercase tracking-[0.2em] border-2 border-medical-royal/30 rounded-xl px-5 py-2.5 hover:bg-medical-royal hover:text-white hover:border-medical-royal transition-all duration-300 group/btn w-fit">
                     Book Appointment <ChevronRight size={16} className="group-hover/btn:translate-x-1 transition-transform" />
                   </Link>
                 </div>
-              ))}
+                );
+              })}
             </div>
           </div>
         </section>

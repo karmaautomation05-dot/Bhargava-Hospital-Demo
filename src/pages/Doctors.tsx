@@ -1,7 +1,8 @@
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import { Helmet } from 'react-helmet-async';
-import { Calendar, Award, GraduationCap, ChevronRight } from 'lucide-react';
-import { Link } from 'react-router-dom';
+import { Calendar, Award, GraduationCap, ChevronRight, Bone, Heart, Activity, Stethoscope, Baby, Scissors, FlaskConical, Ear, Brain, Eye, Dna, Spline, Utensils, Dumbbell, Smile, Radio, FlaskRound } from 'lucide-react';
+import { Link, useLocation } from 'react-router-dom';
+import { useState, useEffect } from 'react';
 
 interface Doctor {
   name: string;
@@ -10,6 +11,36 @@ interface Doctor {
   achievements: string;
   department: string;
 }
+
+interface DeptInfo {
+  name: string;
+  icon: React.ElementType;
+}
+
+const departments: DeptInfo[] = [
+  { name: 'Orthopedics', icon: Bone },
+  { name: 'General Medicine', icon: Stethoscope },
+  { name: 'Gynaecology', icon: Heart },
+  { name: 'Cardiology', icon: Activity },
+  { name: 'General Surgery', icon: Scissors },
+  { name: 'Peadiatrics', icon: Baby },
+  { name: 'Peadiatric Surgeons', icon: Baby },
+  { name: 'Urology', icon: FlaskConical },
+  { name: 'Chest Physician', icon: Activity },
+  { name: 'ENT', icon: Ear },
+  { name: 'Gastroentrology', icon: Stethoscope },
+  { name: 'Nephrology', icon: FlaskConical },
+  { name: 'Opthalmics', icon: Eye },
+  { name: 'Onco-Surgery', icon: Dna },
+  { name: 'Neuro Surgeons', icon: Brain },
+  { name: 'Plastic Surgeon', icon: Spline },
+  { name: 'Anaesthesia', icon: FlaskConical },
+  { name: 'Psychiatrists', icon: Smile },
+  { name: 'Radiology', icon: Radio },
+  { name: 'Pathology', icon: FlaskRound },
+  { name: 'Dietetics', icon: Utensils },
+  { name: 'Physiotherapy', icon: Dumbbell }
+];
 
 const doctors: Doctor[] = [
   { name: "Dr. Gaurav Bhargava", specialty: "Orthopaedist / Joint Replacement / Sports Injury", qualifications: "MBBS, MS (Ortho)", achievements: "He is the best known Orthopaedist in Kanpur. A well known knee replacement surgeon, he leaves no stone unturned in taking care of his patients.", department: "Orthopedics" },
@@ -48,6 +79,35 @@ const doctors: Doctor[] = [
 ];
 
 const Doctors = () => {
+  const [activeCategory, setActiveCategory] = useState<string | null>(null);
+  const location = useLocation();
+
+  useEffect(() => {
+    const hash = location.hash.replace('#', '').toLowerCase();
+    if (hash) {
+      const matched = departments.find(d => d.name.toLowerCase().replace(/\s+/g, '-') === hash);
+      if (matched) {
+        setActiveCategory(matched.name);
+        setTimeout(() => {
+          const el = document.getElementById('doctors-section');
+          if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }, 200);
+      }
+    }
+  }, [location]);
+
+  const handleDeptClick = (name: string) => {
+    setActiveCategory(activeCategory === name ? null : name);
+    setTimeout(() => {
+      const el = document.getElementById('doctors-section');
+      if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }, 250);
+  };
+
+  const filteredDoctors = activeCategory
+    ? doctors.filter(d => d.department === activeCategory)
+    : [];
+
   return (
     <motion.div
       initial={{ opacity: 0 }}
@@ -70,75 +130,130 @@ const Doctors = () => {
         <section className="py-24 relative overflow-hidden bg-gradient-to-br from-[#071B34] via-cyan-800 to-cyan-900">
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(212,169,95,0.08),transparent_40%)]" />
           <div className="section-container relative z-10 text-center">
-            <span className="text-white uppercase tracking-[0.3em] font-bold text-sm mb-4 block">Our Team</span>
+            <span className="text-white uppercase tracking-[0.3em] font-bold text-sm mb-4 block">Specialty Clinics</span>
             <motion.h1 
               initial={{ y: 20, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
               className="text-4xl sm:text-5xl md:text-7xl font-serif font-bold text-white mb-8 leading-tight tracking-tight"
             >
-              Our Medical <span className="text-white">Team</span>
+              Our Medical <span className="text-white">Departments</span>
             </motion.h1>
             <p className="text-white/80 text-xl font-medium max-w-3xl mx-auto leading-relaxed">
-              Meet our complete team of dedicated doctors across all specialties.
+              Browse our departments and select one to view our specialist doctors
             </p>
           </div>
         </section>
 
-        {/* All Doctors Grid */}
+        {/* Department Grid */}
         <section className="py-24 bg-medical-bg">
           <div className="section-container">
             <div className="text-center mb-16">
-              <span className="text-medical-royal uppercase tracking-[0.3em] font-bold text-sm mb-4 block">Specialists</span>
-              <h2 className="text-4xl md:text-6xl font-serif font-bold text-medical-navy mb-6">All Our Doctors</h2>
+              <span className="text-medical-royal uppercase tracking-[0.3em] font-bold text-sm mb-4 block">Departments</span>
+              <h2 className="text-4xl md:text-6xl font-serif font-bold text-medical-navy mb-6">Explore Our Specialties</h2>
               <p className="text-medical-muted text-lg max-w-2xl mx-auto">
-                {doctors.length} expert doctors across all departments
+                Click a department to view its specialist doctors
               </p>
             </div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-              {doctors.map((doc) => (
-                <div
-                  key={doc.name}
-                  className="bg-white rounded-2xl border border-medical-border/60 p-6 flex flex-col h-full group hover:shadow-md hover:border-medical-royal/20 transition-all duration-500"
-                >
-                  <div className="mb-5">
-                    <div className="w-12 h-12 rounded-xl bg-medical-bg flex items-center justify-center text-medical-royal mb-4 group-hover:bg-medical-royal group-hover:text-white transition-all duration-500 border border-medical-border">
-                      <Award size={24} />
+            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4 md:gap-6">
+              {departments.map((dept) => {
+                const IconComponent = dept.icon;
+                const isActive = activeCategory === dept.name;
+                return (
+                  <button
+                    key={dept.name}
+                    onClick={() => handleDeptClick(dept.name)}
+                    className={`group relative flex flex-col items-center gap-3 p-6 rounded-2xl border-2 transition-all duration-300 shadow-sm ${
+                      isActive
+                        ? 'bg-medical-royal text-white border-medical-royal shadow-lg shadow-medical-royal/20 scale-[1.02]'
+                        : 'bg-white text-medical-navy border-medical-border hover:border-medical-royal/40 hover:shadow-md hover:-translate-y-0.5'
+                    }`}
+                  >
+                    <div className={`w-14 h-14 rounded-2xl flex items-center justify-center transition-all duration-300 ${
+                      isActive
+                        ? 'bg-white/15'
+                        : 'bg-medical-royal/5 group-hover:bg-medical-royal/10'
+                    }`}>
+                      <IconComponent size={28} className={isActive ? 'text-white' : 'text-medical-royal'} />
                     </div>
-                    <h3 className="text-lg font-serif font-bold text-medical-navy mb-1">
-                      {doc.name}
-                    </h3>
-                    <p className="text-medical-royal font-bold text-[10px] uppercase tracking-[0.2em] mb-2">
-                      {doc.specialty}
-                    </p>
-                    <span className="inline-block px-2.5 py-0.5 rounded-full bg-medical-royal/5 text-[9px] font-bold text-medical-royal uppercase tracking-wider border border-medical-royal/10">
-                      {doc.department}
+                    <span className="text-xs font-bold text-center leading-tight tracking-wide">
+                      {dept.name}
                     </span>
-                  </div>
-
-                  <div className="space-y-4 mb-6 flex-grow">
-                    <div className="flex items-center gap-2.5 text-[13px] text-medical-muted">
-                      <GraduationCap size={16} className="text-medical-royal shrink-0" />
-                      <span className="font-bold text-medical-navy">{doc.qualifications}</span>
-                    </div>
-                    <div className="p-4 rounded-xl bg-medical-bg border border-medical-border/60">
-                      <p className="text-medical-muted text-[12px] italic leading-relaxed font-medium line-clamp-3">
-                        "{doc.achievements}"
-                      </p>
-                    </div>
-                  </div>
-
-                  <Link to="/appointment" className="inline-flex items-center gap-2 text-medical-royal font-bold text-[11px] uppercase tracking-[0.2em] group/btn">
-                    Book Appointment <ChevronRight size={16} className="group-hover/btn:translate-x-1 transition-transform" />
-                  </Link>
-                </div>
-              ))}
+                  </button>
+                );
+              })}
             </div>
           </div>
         </section>
 
+        {/* Doctors Section */}
+        {activeCategory && (
+          <section id="doctors-section" className="py-24 bg-medical-warmWhite">
+            <div className="section-container">
+              <div className="flex items-center justify-between mb-16">
+                <div>
+                  <span className="text-medical-royal uppercase tracking-[0.3em] font-bold text-sm mb-2 block">Specialists</span>
+                  <h2 className="text-4xl md:text-5xl font-serif font-bold text-medical-navy">{activeCategory}</h2>
+                </div>
+                <button
+                  onClick={() => setActiveCategory(null)}
+                  className="text-sm text-medical-muted hover:text-medical-royal font-medium transition-colors"
+                >
+                  View All Departments
+                </button>
+              </div>
+
+              <AnimatePresence mode="wait">
+                <motion.div
+                  key={activeCategory}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -20 }}
+                  transition={{ duration: 0.4 }}
+                  className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+                >
+                  {filteredDoctors.map((doc) => (
+                    <div
+                      key={doc.name}
+                      className="bg-white rounded-3xl border-2 border-medical-border p-8 flex flex-col h-full group hover:shadow-lg hover:border-medical-royal/30 transition-all duration-500 shadow-sm"
+                    >
+                      <div className="mb-8">
+                        <div className="w-16 h-16 rounded-2xl bg-medical-bg flex items-center justify-center text-medical-royal mb-6 group-hover:bg-medical-royal group-hover:text-white transition-all duration-500 border border-medical-border">
+                          <Award size={32} />
+                        </div>
+                        <h3 className="text-2xl font-serif font-bold text-medical-navy mb-2">
+                          {doc.name}
+                        </h3>
+                        <p className="text-medical-royal font-bold text-xs uppercase tracking-[0.25em]">
+                          {doc.specialty}
+                        </p>
+                      </div>
+
+                      <div className="space-y-5 mb-8 flex-grow">
+                        <div className="flex items-center gap-3 text-[14px] text-medical-muted">
+                          <GraduationCap size={20} className="text-medical-royal shrink-0" />
+                          <span className="font-bold text-medical-navy">{doc.qualifications}</span>
+                        </div>
+                        <div className="p-5 rounded-2xl bg-medical-bg border border-medical-border/60">
+                          <p className="text-medical-muted text-[14px] italic leading-relaxed font-medium">
+                            "{doc.achievements}"
+                          </p>
+                        </div>
+                      </div>
+
+                      <Link to="/appointment" className="inline-flex items-center gap-2 text-medical-royal font-bold text-xs uppercase tracking-[0.25em] group/btn">
+                        Consult Specialist <ChevronRight size={18} className="group-hover/btn:translate-x-1.5 transition-transform" />
+                      </Link>
+                    </div>
+                  ))}
+                </motion.div>
+              </AnimatePresence>
+            </div>
+          </section>
+        )}
+
         {/* Appointment CTA */}
-        <section className="py-24 bg-medical-warmWhite">
+        <section className="py-24 bg-medical-bg">
           <div className="section-container">
             <div className="bg-medical-navy rounded-[4rem] p-16 md:p-32 text-center relative overflow-hidden shadow-sm border border-medical-border">
               <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_0%,rgba(212,169,95,0.1),transparent_60%)]" />
